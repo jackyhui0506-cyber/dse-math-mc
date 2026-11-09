@@ -139,7 +139,7 @@ h2{margin:0 0 4px;font-size:28px}h3{margin:0;font-size:17px}
 /* ============ CONFIG ============ */
 // Paste your Apps Script Web App URL here after deployment (see README). Empty = demo mode (sample questions, progress kept in this browser only).
 const LOGO = "data:image/jpeg;base64,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";
-const CONFIG = { API_URL: "https://script.google.com/macros/s/AKfycbwU5F17CsWNTiBRW1rOJ_CL3JWt06S65B3SVo7Zw2VRREMk7U95IE2OH3gXobOcycqAxA/exec", DAY_MS: 86400000 };   // DAY_MS: length of one "day" for Mistake Book reminders (leave as is)
+const CONFIG = { API_URL: "https://script.google.com/macros/s/AKfycbywmEpSj-79uc4c6xH3Fw0GUOZtauvsgHp0Sm60bJ-SXOh3gkTkond5u456054BXz7WqA/exec", DAY_MS: 86400000 };   // DAY_MS: length of one "day" for Mistake Book reminders (leave as is)
 
 /* ============ CURRICULUM (from EDB "Explanatory Notes to Senior Secondary Mathematics Curriculum – Compulsory Part") ============ */
 const STRANDS = [
@@ -200,13 +200,13 @@ const T = {
   addedMB:n=>`${n} question${n==1?"":"s"} added to your Mistake Book.`,quitConfirm:"Quit without submitting? Nothing will be saved.",
   helpMore:"More help",hSimple:"Explain more simply",hWhy:"Why is my answer wrong?",hSimilar:"Try a similar question",hShowAns:"Show answer",hChose:c=>`You chose ${c}.`,hNote:"This help was prepared by your teacher.",
   mbT:"Mistake Book",mbSum:(n,d,g)=>`Your Mistake Book has ${n} open question${n==1?"":"s"} (${d} due for review today, ${g} graduated).`,
-  reviewDue:n=>`Review due today (${n})`,mbRule:"A wrong answer comes back after 1 day. Get it right on review and it returns after 3 days; two correct reviews in a row and it graduates. A wrong answer starts it again.",
+  reviewDue:n=>`Review due today (${n})`,mbRule:"A wrong answer comes back after 1 day. Get it right once and it leaves your Mistake Book. You can also remove a question yourself at any time; if you get it wrong again, it comes back.",
   mbDueL:"Due now",mbUpL:"Coming up",mbGradL:"Graduated",practiseAll:n=>`Practise all open (${n})`,practise:"Practise",inDays:n=>`in ${n} day${n==1?"":"s"}`,dueNow:"due now",
   noneDue:"Nothing is due today - nice work!",openTile:"open mistakes",dueTile:"due today",gradTile:"graduated",
-  srsWrong:"Added to your Mistake Book. It will come back tomorrow.",srsGrad:"🎓 Graduated! You got it right twice in a row on review, so it leaves your Mistake Book.",
+  srsWrong:"Added to your Mistake Book. It will come back tomorrow.",srsGrad:"🎓 Correct! This question now leaves your Mistake Book.",
   srsNext:d=>`Correct! This question will come back in ${d} day${d==1?"":"s"}.`,srsEarly:d=>`Correct, but it is not due for review yet. Answers count towards graduating from ${d}.`,
   teacherT:"Teacher dashboard",teacherView:"Teacher dashboard",studentView:"Student view",allClasses:"All classes",exportCSV:"Export CSV",
-  tabOv:"Overview",tabSt:"Students",tabHard:"Hardest questions",tStudents:"students",tActive:"active in last 7 days",tAnswers:"answers",tAcc:"class accuracy",
+  tabHw:"Assignments",tabOv:"Overview",tabSt:"Students",tabHard:"Hardest questions",tStudents:"students",tActive:"active in last 7 days",tAnswers:"answers",tAcc:"class accuracy",
   byLUclass:"Accuracy by topic (whole class)",activity14:"Activity, last 14 days",needAttn:"Needs attention",noAttn:"Everyone is on track.",
   cName:"Name",cClass:"Class",cAns:"Answers",cAcc:"Accuracy",cTried:"Tried",cOpen:"Open mistakes",cLast:"Last active",never:"never",today:"today",yesterday:"yesterday",
   daysAgo:n=>`${n} days ago`,inactive:n=>`${n}+ days inactive`,lowAcc:"low accuracy",hardNote:"Questions with at least 3 answers, lowest accuracy first.",
@@ -245,13 +245,13 @@ const T = {
   addedMB:n=>`已有 ${n} 題加入錯題簿。`,quitConfirm:"確定放棄？本次作答不會儲存。",
   helpMore:"更多幫助",hSimple:"再簡單啲講",hWhy:"點解我揀嘅唔啱？",hSimilar:"試做類似題",hShowAns:"顯示答案",hChose:c=>`你揀了 ${c}。`,hNote:"以上內容由老師預先準備。",
   mbT:"錯題簿",mbSum:(n,d,g)=>`錯題簿現有 ${n} 題待改正（今日到期 ${d} 題，已畢業 ${g} 題）。`,
-  reviewDue:n=>`今日複習 (${n})`,mbRule:"答錯的題目 1 日後會提醒你重做；重做答對後 3 日再考一次；連續兩次複習都答對即「畢業」，答錯就重新計算。",
+  reviewDue:n=>`今日複習 (${n})`,mbRule:"答錯的題目 1 日後會提醒你重做；只要答對一次就會離開錯題簿。你也可以隨時自己按「移除」；之後如果再答錯，會重新加入。",
   mbDueL:"今日到期",mbUpL:"稍後複習",mbGradL:"已畢業",practiseAll:n=>`練習全部待改正 (${n})`,practise:"練習",inDays:n=>`${n} 日後`,dueNow:"已到期",
   noneDue:"今日沒有到期的錯題，做得好！",openTile:"待改正",dueTile:"今日到期",gradTile:"已畢業",
-  srsWrong:"已加入錯題簿，明日會再提醒你重做。",srsGrad:"🎓 畢業了！複習時連續兩次答對，這題已離開錯題簿。",
+  srsWrong:"已加入錯題簿，明日會再提醒你重做。",srsGrad:"🎓 答對了！這題已離開錯題簿。",
   srsNext:d=>`答對了！這題 ${d} 日後會再出現。`,srsEarly:d=>`答對了，但還未到複習時間，由 ${d} 起答對才計算畢業進度。`,
   teacherT:"老師後台",teacherView:"老師後台",studentView:"學生介面",allClasses:"全部班別",exportCSV:"匯出 CSV",
-  tabOv:"總覽",tabSt:"學生",tabHard:"最多人答錯",tStudents:"學生人數",tActive:"7 日內有練習",tAnswers:"作答次數",tAcc:"全班答對率",
+  tabHw:"派發練習",tabOv:"總覽",tabSt:"學生",tabHard:"最多人答錯",tStudents:"學生人數",tActive:"7 日內有練習",tAnswers:"作答次數",tAcc:"全班答對率",
   byLUclass:"各課題答對率（全班）",activity14:"最近 14 日作答量",needAttn:"需要關注",noAttn:"所有學生狀況良好。",
   cName:"姓名",cClass:"班別",cAns:"作答",cAcc:"答對率",cTried:"已做",cOpen:"待改正",cLast:"最後練習",never:"從未",today:"今日",yesterday:"昨日",
   daysAgo:n=>`${n} 日前`,inactive:n=>`${n} 日以上沒練習`,lowAcc:"答對率偏低",hardNote:"至少 3 次作答的題目，答對率由低至高。",
@@ -267,7 +267,25 @@ const rich = s => esc(s).replace(/\n/g,"<br>");
 const pct = (a,b) => b ? Math.round(100*a/b) : 0;
 const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0; [a[i],a[j]]=[a[j],a[i]]} return a };
 const S = { lang: store.get("lang")||"zh", theme: store.get("theme")||"light", view:"login", user:null, token:null,
-  Q:[], att:[], A:{}, selLU:new Set(), selYear:new Set(), pool:"all", n:10, quiz:null, mode:"ex", timeMode:"default", customMin:30, help:{}, T:{cls:"",tab:"overview",data:null,loading:false,err:"",detail:null,sort:{k:"last",d:1}}, sort:"order", expLang:null, err:"" };
+  Q:[], att:[], A:{}, hw:[], rm:{}, selLU:new Set(), selYear:new Set(), pool:"all", n:10, quiz:null, mode:"ex", timeMode:"default", customMin:30, help:{}, T:{hw:null,hwForm:null,hwRes:null,hwLoading:false,cls:"",tab:"overview",data:null,loading:false,err:"",detail:null,sort:{k:"last",d:1}}, sort:"order", expLang:null, err:"" };
+const HWT={
+ zh:{hwTitle:"老師派發的練習",todo:"未做",overdue:"已過期",done:(s,n)=>`已完成 ${s}/${n}`,startHw:"開始",redoHw:"重做",hwMeta:(n,l,d)=>`${n} 題 · ${l?l+" 分鐘":"不限時"} · 截止 ${d}`,noQ:"找不到這份練習的題目",noLimit:"不限時",
+  remove:"移除",rmConfirm:"確定把這題從錯題簿移除？之後如果再答錯，會重新加入。",close:"關閉",
+  newHw:"＋ 新增練習",hwName:"練習名稱",hwClasses:"派發班別",hwTopics:"課題（不揀 = 全部）",hwYears:"年份（不揀 = 全部）",hwCount:"題目數目",hwLimit:"限時（分鐘，留空 = 不限時）",hwStart:"開放日期",hwDue:"截止日期",
+  hwPick:"自動抽題",hwSel:"已選題目",hwPrev:"預覽",hwSwap:"換題",hwDel:"刪除",hwAdd:"加入",hwSearchPh:"手動加題：輸入年份、題號或關鍵字",hwSearch:"搜尋",hwSave:"儲存並派發",hwCancel:"取消",
+  hwEmpty:"未有練習。按「＋ 新增練習」開始。",hwCQ:"題數",hwCLimit:"限時",hwCCreated:"建立日期",hwCStart:"開放",hwCDue:"截止",hwCDone:"已交/應交",hwCAvg:"平均分",hwRes:"成績",hwEdit:"編輯",
+  hwDelConfirm:"確定刪除這份練習？學生將不再看到它（已作答紀錄會保留）。",hwNeedTitle:"請輸入練習名稱",hwNeedClass:"請揀最少一個班別",hwNeedQ:"請最少揀一題",hwDates:"日期不正確（截止日期不可早於開放日期）",hwSaved:"已儲存",
+  hwNoClass:"未有班別資料（請在 Students 分頁填寫 Class 欄）",hwPool:n=>`符合條件的題目：${n} 題`,hwNoSwap:"沒有其他符合條件的題目可換",hwNone:"尚未揀題：按「自動抽題」或手動加題",
+  rEligible:"應交",rSubmitted:"已交",rMissing:"未交",rAvg:"平均分",rStatus:"狀態",rScore:"分數",rTime:"提交時間",rLate:"遲交",rPartial:(a,b)=>`未完成 ${a}/${b}`,rMiss:"未交",rOk:"已交",rByQ:"各題答對率",rWrong:"最多人揀錯",rStu:"學生成績",rExport:"匯出 CSV",editNote:"此練習已派發，修改題目後學生會見到新版本。"},
+ en:{hwTitle:"Assignments from your teacher",todo:"To do",overdue:"Overdue",done:(s,n)=>`Done ${s}/${n}`,startHw:"Start",redoHw:"Redo",hwMeta:(n,l,d)=>`${n} questions · ${l?l+" min":"No time limit"} · due ${d}`,noQ:"Questions for this assignment were not found",noLimit:"No limit",
+  remove:"Remove",rmConfirm:"Remove this question from your Mistake Book? If you get it wrong again it will come back.",close:"Close",
+  newHw:"+ New assignment",hwName:"Title",hwClasses:"Classes",hwTopics:"Topics (none = all)",hwYears:"Years (none = all)",hwCount:"Number of questions",hwLimit:"Time limit (minutes, blank = none)",hwStart:"Opens on",hwDue:"Due date",
+  hwPick:"Pick at random",hwSel:"Selected questions",hwPrev:"Preview",hwSwap:"Swap",hwDel:"Delete",hwAdd:"Add",hwSearchPh:"Add manually: year, question number or keyword",hwSearch:"Search",hwSave:"Save and assign",hwCancel:"Cancel",
+  hwEmpty:"No assignments yet. Press “+ New assignment”.",hwCQ:"Questions",hwCLimit:"Time limit",hwCCreated:"Created",hwCStart:"Opens",hwCDue:"Due",hwCDone:"Submitted/Total",hwCAvg:"Average",hwRes:"Results",hwEdit:"Edit",
+  hwDelConfirm:"Delete this assignment? Students will no longer see it (their answers are kept).",hwNeedTitle:"Please enter a title",hwNeedClass:"Please choose at least one class",hwNeedQ:"Please select at least one question",hwDates:"Invalid dates (due date cannot be before the opening date)",hwSaved:"Saved",
+  hwNoClass:"No class data (fill the Class column in the Students sheet)",hwPool:n=>`Matching questions: ${n}`,hwNoSwap:"No other matching question to swap in",hwNone:"No questions yet: press “Pick at random” or add manually",
+  rEligible:"Total",rSubmitted:"Submitted",rMissing:"Not submitted",rAvg:"Average",rStatus:"Status",rScore:"Score",rTime:"Submitted at",rLate:"Late",rPartial:(a,b)=>`Incomplete ${a}/${b}`,rMiss:"Not submitted",rOk:"Submitted",rByQ:"Correct rate by question",rWrong:"Most common wrong",rStu:"Student results",rExport:"Export CSV",editNote:"This assignment is already out; students will see the updated version after you save."}};
+const hT=(k,...a)=>{ const v=HWT[S.lang][k]; return typeof v==="function"?v(...a):v };
 const t = (k,...a) => { const v=T[S.lang][k]; return typeof v==="function"?v(...a):v };
 const luName = lu => LU[lu][S.lang==="zh"?1:0];
 const stName = s => s[S.lang];
@@ -288,30 +306,41 @@ function demoApi(action,d){
   const load=()=>{try{return JSON.parse(store.get(key)||"[]")}catch(e){return[]}};
   if(action==="login") return d.id ? {token:"demo",student:{id:d.id,name:d.id,cls:"Demo",role:d.id.toLowerCase()==="teacher"?"teacher":"student"}} : Promise.reject(new Error("BAD"));
   if(action==="changePassword") return {ok:true};
+  const hk="demo_hw", hl=()=>{try{return JSON.parse(store.get(hk)||"[]")}catch(e){return[]}};
+  if(action==="mbRemove") return {ok:true};
+  if(action==="hwList") return {assignments:hl().map(a=>({...a,status:{n:0,score:0,ts:0}}))};
+  if(action==="tHwList") return {assignments:hl().map(a=>({...a,eligible:3,submitted:0,avg:null}))};
+  if(action==="tHwSave"){ const L=hl(), o={id:d.id||"A"+Math.random().toString(36).slice(2,8),title:d.title,classes:d.classes,topics:d.topics,qids:d.qids,limit:d.limit,start:d.start,due:d.due,created:Date.now(),by:"demo"}; const i=L.findIndex(x=>x.id===o.id); if(i>=0){o.created=L[i].created;L[i]=o}else L.push(o); store.set(hk,JSON.stringify(L)); return {ok:true,id:o.id}; }
+  if(action==="tHwDelete"){ store.set(hk,JSON.stringify(hl().filter(x=>x.id!==d.id))); return {ok:true}; }
+  if(action==="tHwResult"){ const a=hl().find(x=>x.id===d.id); if(!a) return Promise.reject(new Error("Unknown assignment"));
+    const students=["Demo A","Demo B","Demo C"].map((nm,k)=>{const ans={}; a.qids.forEach((q,j)=>{if(k<2)ans[q]={c:(j+k)%3!==0,ch:"A"}}); return {id:"d"+k,name:nm,cls:a.classes[0]||"",n:Object.keys(ans).length,score:Object.values(ans).filter(x=>x.c).length,ts:k<2?Date.now():0,late:false,ans}});
+    return {assignment:a,students,questions:a.qids.map((q,j)=>({qid:q,att:2,ok:j%3?2:1,topWrong:j%3?"":"A",topWrongN:j%3?0:1}))}; }
   if(action==="teacher") return demoTeacherData(d.cls||"");
   if(action==="teacherStudent") return demoTeacherStudent(d.sid);
   if(action==="bootstrap") return {questions:SAMPLE,attempts:load()};
   if(action==="answer"){ const a=load(); a.push({qid:d.qid,chosen:d.chosen,correct:d.correct,ts:Date.now()}); store.set(key,JSON.stringify(a)); return {ok:true}; }
   if(action==="answers"){ const a=load(); d.items.forEach(i=>{const q=SAMPLE.find(x=>x.id===i.qid); a.push({qid:i.qid,chosen:i.chosen,correct:!!q&&q.answer===i.chosen,ts:Date.now()})}); store.set(key,JSON.stringify(a)); return {ok:true}; }
 }
-const SRS_DAYS=[1,3], GRAD=2;   // wrong -> back in 1 day; 1st correct review -> 3 days; 2nd correct review in a row -> graduated
+const SRS_DAYS=[1,3], GRAD=1;   // wrong -> back in 1 day; the next correct answer -> graduated (leaves the Mistake Book); the student can also remove a question manually
 const DAYMS=()=>CONFIG.DAY_MS||864e5;
 function buildAttempts(){
   S.A={};
   for(const a of [...S.att].sort((x,y)=>x.ts-y.ts)){
-    const r=S.A[a.qid]||(S.A[a.qid]={n:0,right:0,everWrong:false,last:null,c:0,due:0,grad:false});
+    const r=S.A[a.qid]||(S.A[a.qid]={n:0,right:0,everWrong:false,last:null,c:0,due:0,grad:false,lw:0});
     r.n++; if(a.correct)r.right++; r.last=!!a.correct;
-    if(!a.correct){ r.everWrong=true; r.c=0; r.grad=false; r.due=a.ts+SRS_DAYS[0]*DAYMS(); }
-    else if(r.everWrong&&!r.grad&&a.ts>=r.due){   // only a correct answer at/after the due time counts
-      r.c++; if(r.c>=GRAD){r.grad=true;r.due=0} else r.due=a.ts+SRS_DAYS[Math.min(r.c,SRS_DAYS.length-1)]*DAYMS();
-    }
+    if(!a.correct){ r.everWrong=true; r.c=0; r.grad=false; r.lw=a.ts; r.due=a.ts+SRS_DAYS[0]*DAYMS(); }
+    else if(r.everWrong&&!r.grad){ r.c++; if(r.c>=GRAD){r.grad=true;r.due=0} else r.due=a.ts+SRS_DAYS[Math.min(r.c,SRS_DAYS.length-1)]*DAYMS(); }
   }
+  for(const qid in S.rm){ const r=S.A[qid]; if(r&&r.everWrong&&!r.grad&&S.rm[qid]>r.lw){r.grad=true;r.due=0} }   // removed by the student after the last wrong answer
 }
 async function boot(){
   const j = await api("bootstrap");
   S.Q = (j.questions||[]).filter(q=>q.active!==false && q.lu>=1 && q.lu<=MAXT);   // out-of-curriculum questions never shown
-  S.att = j.attempts||[]; buildAttempts();
+  S.att = j.attempts||[]; S.rm={}; (j.removed||[]).forEach(x=>{S.rm[x.qid]=Math.max(S.rm[x.qid]||0,x.ts)}); buildAttempts();
+  await loadHw();
 }
+async function loadHw(){ if(S.user&&S.user.role==="teacher"){S.hw=[];return}
+  try{ S.hw=(await api("hwList")).assignments||[]; }catch(e){ S.hw=[]; } if(S.view==="home")render(true); }
 
 /* ============ filtering ============ */
 const inMB = q => S.A[q.id]?.everWrong;
@@ -370,7 +399,7 @@ function vHome(){
     <div class="tiles"><div class="tile"><b>${triedN} / ${S.Q.length}</b><span>${t("tried")}</span></div>
     <div class="tile ok"><b>${pct(okAtt,totalAtt)}%</b><span>${t("ofAll")}</span></div>
     <div class="tile bad"><b>${mbAll.length}</b><span>${t("inMB")}</span></div></div></div>
-  <div class="grid"><div class="card"><h3>${t("topics")} <span class="mut small" style="font-weight:400">${t("many")}</span></h3>
+  ${hwCard()}<div class="grid"><div class="card"><h3>${t("topics")} <span class="mut small" style="font-weight:400">${t("many")}</span></h3>
     <div class="scroll"><div class="topic ${S.selLU.size===0?"sel":""}" data-lu="all" style="--sc:var(--pri);margin-top:12px"><span class="cb">${S.selLU.size===0?"✓":""}</span>
       <div class="nm">${t("allTopics")}</div><span class="cnt">${t("nq",S.Q.length)}</span></div>${strands}</div></div>
   <div class="card"><h3>${t("options")}</h3>
@@ -484,6 +513,7 @@ const fmt=s=>{s=Math.max(0,s);const h=Math.floor(s/3600),m=Math.floor(s%3600/60)
 function stopTimer(){clearInterval(tmr);tmr=null}
 function startTimer(){ if(tmr)return; tmr=setInterval(()=>{ const Z=S.quiz;
   if(!Z||Z.mode!=="quiz"||Z.submitted||S.view!=="quiz"){stopTimer();return}
+  if(Z.untimed)return;
   const left=Math.ceil((Z.deadline-Date.now())/1000), el=$("#timer");
   if(el){el.textContent=fmt(left);el.classList.toggle("low",left<=60)}
   if(left<=0){stopTimer();toast(t("timeUp"));submitQuiz(true)} },500); }
@@ -494,7 +524,7 @@ function vTimed(){
   const Z=S.quiz,q=Z.list[Z.i],n=Z.list.length,left=Math.ceil((Z.deadline-Date.now())/1000),na=Z.ans.filter(Boolean).length;
   const nav=Z.list.map((_,i)=>`<button data-go="${i}" class="${Z.ans[i]?"ans":""} ${i===Z.i?"cur":""}">${i+1}</button>`).join("");
   const opts=optHtml(q,L=>({cls:Z.ans[Z.i]===L?"pick":"",mark:"",dis:false}));
-  return `<div class="card qbar"><b>${t("qOf",Z.i+1,n)}</b><span class="timer ${left<=60?"low":""}" id="timer">${fmt(left)}</span>
+  return `<div class="card qbar"><b>${t("qOf",Z.i+1,n)}</b><span class="timer ${!Z.untimed&&left<=60?"low":""}" id="timer">${Z.untimed?"∞":fmt(left)}</span>
     <span class="mut small">${t("answeredN",na,n)}</span><span style="flex:1"></span>
     <a href="#" id="chg" style="color:var(--pri);font-weight:600;font-size:14px;text-decoration:none">${t("quit")}</a>
     <button class="btn" id="submit" style="padding:9px 20px">${t("submit")}</button></div>
@@ -506,10 +536,10 @@ function vTimed(){
 }
 function submitQuiz(auto){
   const Z=S.quiz; if(!Z||Z.submitted)return; Z.submitted=true; Z.auto=auto;
-  Z.used=Math.min(Z.total,Math.round((Date.now()-Z.start)/1000));
+  Z.used=Z.untimed?Math.round((Date.now()-Z.start)/1000):Math.min(Z.total,Math.round((Date.now()-Z.start)/1000));
   const items=Z.list.map((q,i)=>({qid:q.id,chosen:Z.ans[i]||"",correct:Z.ans[i]===q.answer})), ts=Date.now();
   items.forEach(x=>S.att.push({...x,ts})); buildAttempts(); Z.res=items.map(x=>x.correct);   // unanswered counts as wrong -> Mistake Book
-  api("answers",{items:items.map(({qid,chosen})=>({qid,chosen})),mode:"quiz"}).catch(()=>toast("⚠ Not saved / 未能儲存"));
+  api("answers",{items:items.map(({qid,chosen})=>({qid,chosen})),mode:Z.hw?"hw:"+Z.hw:"quiz"}).then(()=>{if(Z.hw)loadHw()}).catch(()=>toast("⚠ Not saved / 未能儲存"));
   S.view="qresult"; render();
 }
 function vQResult(){
@@ -523,7 +553,7 @@ function vQResult(){
       <div class="why"><span>${t("why")}</span></div><div>${rich(exp)}</div>${q.pct?`<div class="note">${t("rate",q.pct)}</div>`:""}${helpBlock(q,a)}</div>`}).join("");
   return `<div class="card" style="text-align:center"><h2>${t("quizDone")}</h2>${Z.auto?`<div class="note bad" style="display:inline-block">${t("autoSub")}</div>`:""}
     <div class="tiles" style="justify-content:center;margin:16px 0"><div class="tile ok"><b>${c} / ${n}</b><span>${t("scoreL")} (${pct(c,n)}%)</span></div>
-    <div class="tile"><b>${fmt(Z.used)}</b><span>${t("timeUsed")} / ${fmt(Z.total)}</span></div>
+    <div class="tile"><b>${fmt(Z.used)}</b><span>${t("timeUsed")}${Z.untimed?"":" / "+fmt(Z.total)}</span></div>
     <div class="tile bad"><b>${wrong}</b><span>${t("addedMB",wrong)}</span></div>${sk?`<div class="tile"><b>${sk}</b><span>${t("skipped")}</span></div>`:""}</div>
     ${wrong?`<button class="btn" id="redo">${t("redo")} (${wrong})</button> `:""}<button class="btn soft" id="home">${t("home")}</button> <button class="btn soft" id="openProg">${t("prog")}</button></div>
    <div class="card" style="display:flex;justify-content:space-between;align-items:center"><h3>${t("review")}</h3><span class="langsw"><button data-el="zh" class="${el==="zh"?"on":""}">中文</button><button data-el="en" class="${el==="en"?"on":""}">EN</button></span></div>${cards}`;
@@ -574,7 +604,7 @@ function vMB(){
       :st==="up"?`<span class="pillst" style="background:var(--na);color:var(--mut)">${t("inDays",days)}</span>`:`<span class="pillst" style="background:var(--ok-soft);color:var(--ok)">🎓</span>`;
     const prog=st==="grad"?"":`<span class="mut small" title="${r.c}/${GRAD}">${"●".repeat(r.c)}${"○".repeat(GRAD-r.c)}</span>`;
     return `<div class="mbrow"><div style="flex:1;min-width:0"><div class="small mut">${esc(srcTag(q))} · ${esc(topicTag(q))}</div><div style="overflow-wrap:anywhere">${snip(q.q)}</div></div>${prog}${chip}
-      <button class="btn soft" data-mbq="${esc(q.id)}" style="padding:6px 14px;font-size:13px">${t("practise")}</button></div>`; };
+      <button class="btn soft" data-mbq="${esc(q.id)}" style="padding:6px 14px;font-size:13px">${t("practise")}</button>${st==="grad"?"":`<button class="btn soft" data-mbrm="${esc(q.id)}" style="padding:6px 12px;font-size:13px">${hT("remove")}</button>`}</div>`; };
   const sec=(title,arr,st)=>arr.length?`<div class="card"><h3>${title} (${arr.length})</h3>${arr.map(q=>row(q,st)).join("")}</div>`:"";
   return `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><h2>${t("mbT")}</h2><a href="#" id="homeMB" style="color:var(--pri);font-weight:600;text-decoration:none">${t("back")}</a></div>
     <div class="mut">${t("mbRule")}</div>
@@ -608,7 +638,7 @@ function vTeacher(){
   if(T.err) return head+`<div class="card err">${esc(T.err)}</div>`;
   if(!d) return head+`<div class="card mut">${t("loading")}</div>`;
   if(T.detail) return head+vStudentDetail();
-  const tabs=`<div class="chips" style="margin:0 0 14px">${[["overview","tabOv"],["students","tabSt"],["hard","tabHard"]].map(([k,l])=>`<button class="chip ${T.tab===k?"on":""}" data-tab="${k}">${t(l)}</button>`).join("")}</div>`;
+  const tabs=`<div class="chips" style="margin:0 0 14px">${[["overview","tabOv"],["students","tabSt"],["hard","tabHard"],["hw","tabHw"]].map(([k,l])=>`<button class="chip ${T.tab===k?"on":""}" data-tab="${k}">${t(l)}</button>`).join("")}</div>`;
   let body="";
   if(T.tab==="overview"){
     const o=d.totals, lus=[...d.lu].sort((a,b)=>a.lu-b.lu);
@@ -629,6 +659,7 @@ function vTeacher(){
         return `<tr class="click" data-sid="${esc(s.id)}"><td><b>${esc(s.name)}</b></td><td>${esc(s.cls)}</td><td>${s.att}</td><td style="${a!==null&&a<50?"color:var(--bad);font-weight:700":""}">${a===null?"–":a+"%"}</td>
         <td>${s.tried}</td><td>${s.mbOpen}${s.mbDue?` <span class="pillst" style="background:var(--bad-soft);color:var(--bad)">${s.mbDue} ${t("dueTile")}</span>`:""}</td><td style="${idle?"color:var(--bad)":""}">${ago(s.last)}</td></tr>`}).join("")}</tbody></table></div>
       ${d.students.length?"":`<div class="mut" style="padding:12px">${t("noData")}</div>`}</div>`;
+  } else if(T.tab==="hw"){ body=vHw();
   } else {
     body=`<div class="card"><div class="mut small" style="margin-bottom:8px">${t("hardNote")}</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>${t("cQ")}</th><th>${t("cAns")}</th><th>${t("cAcc")}</th><th>${t("cWrong")}</th></tr></thead><tbody>
       ${d.hard.map(h=>`<tr><td><div class="small mut">${qTag(h.id)}</div><div style="max-width:420px;overflow-wrap:anywhere">${stemOf(h.id)}</div></td><td>${h.att}</td><td style="color:var(--bad);font-weight:700">${pct(h.ok,h.att)}%</td><td>${h.topWrong?`${h.topWrong} <span class="mut small">(${h.topWrongN})</span>`:"–"}</td></tr>`).join("")}</tbody></table></div>
@@ -692,6 +723,7 @@ function bind(){
     $("#go").onclick=go; $("#spw").onkeydown=e=>{if(e.key==="Enter")go()};
   }
   if(S.view==="home"){
+    on("[data-hw]",e=>startHw(e.dataset.hw));
     on("[data-lu]",e=>{ const v=e.dataset.lu; if(e.classList.contains("dis"))return; if(v==="all")S.selLU.clear(); else {const u=+v; S.selLU.has(u)?S.selLU.delete(u):S.selLU.add(u)} render(); });
     on("[data-pool]",e=>{S.pool=e.dataset.pool;render()});
     on("[data-year]",e=>{const v=e.dataset.year; if(v==="all")S.selYear.clear(); else {const y=+v; S.selYear.has(y)?S.selYear.delete(y):S.selYear.add(y)} render()});
@@ -725,12 +757,13 @@ function bind(){
   }
   if(S.view==="mb"){
     on("#homeMB",()=>{S.view="home";render()}); on("#reviewDue",()=>practise(S.Q.filter(mbDue))); on("#practiceAll",()=>practise(S.Q.filter(mbOpen)));
-    on("[data-mbq]",e=>practise(S.Q.filter(q=>q.id===e.dataset.mbq)));
+    on("[data-mbq]",e=>practise(S.Q.filter(q=>q.id===e.dataset.mbq))); on("[data-mbrm]",e=>mbRemove(e.dataset.mbrm));
+    on("[data-hw]",e=>startHw(e.dataset.hw));
   }
   if(S.view==="teacher"){
     $("#tcls").onchange=e=>{S.T.cls=e.target.value;S.T.detail=null;loadTeacher()};
     on("#trefresh",()=>loadTeacher()); on("#texport",exportCSV);
-    on("[data-tab]",e=>{S.T.tab=e.dataset.tab;S.T.detail=null;render(true)});
+    on("[data-tab]",e=>{S.T.tab=e.dataset.tab;S.T.detail=null;if(S.T.tab==="hw"&&!S.T.hw)loadHwList();render(true)}); bindHw();
     on("[data-tsort]",e=>{const k=e.dataset.tsort,o=S.T.sort; S.T.sort={k,d:o.k===k?-o.d:(k==="name"||k==="cls"?1:-1)};render(true)});
     on("[data-sid]",e=>loadStudent(e.dataset.sid)); on("#tback",()=>{S.T.detail=null;render(true)});
   }
@@ -747,6 +780,153 @@ function logout(){ S.user=null;S.token=null;S.view="login";store.set("sess","");
 $("#langBtn").onclick=()=>{S.lang=S.lang==="zh"?"en":"zh";store.set("lang",S.lang);S.expLang=null;render()};
 $("#themeBtn").onclick=()=>{S.theme=S.theme==="dark"?"light":"dark";store.set("theme",S.theme);render()};
 $("#outBtn").onclick=logout;
+
+/* ============ Assignments (teacher-created practice sets) ============ */
+const d2s=ms=>{const d=new Date(ms);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const fdate=ms=>ms?new Date(ms).toLocaleDateString(S.lang==="zh"?"zh-HK":"en-GB"):"–";
+const fdt=ms=>ms?new Date(ms).toLocaleString(S.lang==="zh"?"zh-HK":"en-GB",{hour12:false}):"–";
+function hwCard(){
+  if(!S.hw.length) return "";
+  const now=Date.now();
+  const rows=[...S.hw].sort((a,b)=>(a.due||9e15)-(b.due||9e15)).map(a=>{
+    const nq=a.qids.filter(id=>S.Q.some(q=>q.id===id)).length, st=a.status||{n:0,score:0}, done=st.n>0, late=a.due&&now>a.due;
+    const chip=done?`<span class="pillst" style="background:var(--ok-soft);color:var(--ok)">${hT("done",st.score,a.qids.length)}</span>`
+      :late?`<span class="pillst" style="background:var(--bad-soft);color:var(--bad)">${hT("overdue")}</span>`:`<span class="pillst" style="background:var(--na);color:var(--mut)">${hT("todo")}</span>`;
+    return `<div class="mbrow"><div style="flex:1;min-width:0"><b>${esc(a.title)}</b><div class="small mut">${hT("hwMeta",nq,a.limit,fdate(a.due))}</div></div>${chip}
+      <button class="btn ${done?"soft":""}" data-hw="${esc(a.id)}" style="padding:6px 16px;font-size:13px">${done?hT("redoHw"):hT("startHw")}</button></div>`}).join("");
+  return `<div class="card"><h3>${hT("hwTitle")}</h3>${rows}</div>`;
+}
+function startHw(id){
+  const a=S.hw.find(x=>x.id===id); if(!a)return;
+  const l=a.qids.map(i=>S.Q.find(q=>q.id===i)).filter(Boolean); if(!l.length){toast(hT("noQ"));return}
+  const un=!a.limit, mins=a.limit||0;
+  S.quiz={mode:"quiz",hw:a.id,list:l,i:0,ans:l.map(()=>null),start:Date.now(),deadline:un?Infinity:Date.now()+mins*60000,total:mins*60,mins,untimed:un,confirm:false,submitted:false};
+  S.expLang=null; S.view="quiz"; render();
+}
+function mbRemove(qid){
+  if(!window.confirm(hT("rmConfirm")))return;
+  S.rm[qid]=Date.now(); buildAttempts();
+  api("mbRemove",{qid}).catch(()=>toast("⚠ Not saved / 未能儲存")); render(true);
+}
+async function loadHwList(){
+  S.T.hwLoading=true; render(true);
+  try{ S.T.hw=(await api("tHwList")).assignments||[]; }catch(e){ S.T.hw=[]; toast(e.message); }
+  S.T.hwLoading=false; if(S.view==="teacher")render(true);
+}
+function hwPool(f){ return S.Q.filter(q=>(!f.topics.size||topicsOf(q).some(u=>f.topics.has(u)))&&(!f.years.size||f.years.has(q.year))); }
+function newHwForm(a){
+  const now=Date.now();
+  if(a) return {id:a.id,title:a.title,classes:new Set(a.classes),topics:new Set(a.topics||[]),years:new Set(),n:a.qids.length,limit:a.limit||"",start:d2s(a.start||now),due:d2s(a.due||now+7*864e5),qids:[...a.qids],kw:"",edit:true};
+  return {id:null,title:"",classes:new Set(),topics:new Set(),years:new Set(),n:10,limit:"",start:d2s(now),due:d2s(now+7*864e5),qids:[],kw:""};
+}
+function vHw(){
+  const T=S.T; if(T.hwRes) return vHwRes(); if(T.hwForm) return vHwForm();
+  if(T.hwLoading||!T.hw) return `<div class="card mut">${t("loading")}</div>`;
+  const btn=(a,k,l)=>`<button class="btn soft" data-${k}="${esc(a.id)}" style="padding:5px 12px;font-size:13px">${hT(l)}</button>`;
+  const rows=T.hw.map(a=>`<tr><td><b>${esc(a.title)}</b></td><td>${esc(a.classes.join(", "))}</td><td>${a.qids.length}</td><td>${a.limit?a.limit+" "+t("minUnit"):hT("noLimit")}</td><td>${fdate(a.created)}</td><td>${fdate(a.start)}</td><td>${fdate(a.due)}</td>
+    <td>${a.submitted}/${a.eligible}</td><td>${a.avg==null?"–":a.avg+"%"}</td><td style="white-space:nowrap">${btn(a,"hwres","hwRes")} ${btn(a,"hwe","hwEdit")} ${btn(a,"hwx","hwDel")}</td></tr>`).join("");
+  return `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0">${t("tabHw")}</h3><button class="btn" id="hwNew">${hT("newHw")}</button></div>
+   ${T.hw.length?`<div class="tbl-wrap" style="margin-top:12px"><table class="tbl"><thead><tr><th>${hT("hwName")}</th><th>${t("cClass")}</th><th>${hT("hwCQ")}</th><th>${hT("hwCLimit")}</th><th>${hT("hwCCreated")}</th><th>${hT("hwCStart")}</th><th>${hT("hwCDue")}</th><th>${hT("hwCDone")}</th><th>${hT("hwCAvg")}</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`
+     :`<div class="mut" style="padding:12px 0">${hT("hwEmpty")}</div>`}</div>`;
+}
+function vHwForm(){
+  const f=S.T.hwForm, classes=S.T.data?.classes||[], pool=hwPool(f), years=[...new Set(S.Q.map(q=>q.year))].sort((a,b)=>b-a);
+  const chips=(arr,att,sel,lab)=>arr.map(v=>`<button class="chip ${sel.has(v)?"on":""}" ${att}="${esc(String(v))}">${lab(v)}</button>`).join("");
+  const kw=(f.kw||"").trim().toLowerCase();
+  const found=kw?pool.filter(q=>!f.qids.includes(q.id)&&(q.id.toLowerCase().includes(kw)||(srcTag(q)+" "+topicTag(q)).toLowerCase().includes(kw)||String(q.q).toLowerCase().includes(kw))).slice(0,15):[];
+  const b=(k,i,l)=>`<button class="btn soft" data-${k}="${esc(String(i))}" style="padding:4px 10px;font-size:12px">${hT(l)}</button>`;
+  const selRows=f.qids.map((id,i)=>`<div class="mbrow"><b>${i+1}.</b><div style="flex:1;min-width:0"><div class="small mut">${qTag(id)}</div><div style="overflow-wrap:anywhere">${stemOf(id)}</div></div>
+     <span style="white-space:nowrap">${b("hwv",id,"hwPrev")} ${b("hwr",i,"hwSwap")} ${b("hwd",i,"hwDel")}</span></div>`).join("");
+  const foundRows=found.map(q=>`<div class="mbrow"><div style="flex:1;min-width:0"><div class="small mut">${esc(srcTag(q))} · ${esc(topicTag(q))}</div><div style="overflow-wrap:anywhere">${snip(q.q,80)}</div></div>
+     <span style="white-space:nowrap">${b("hwv",q.id,"hwPrev")} ${b("hwa",q.id,"hwAdd")}</span></div>`).join("");
+  const inp="padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit";
+  return `<div class="card"><h3>${f.id?hT("hwEdit"):hT("newHw")}</h3>${f.edit?`<div class="note" style="margin-bottom:10px">${hT("editNote")}</div>`:""}
+    <div class="label">${hT("hwName")}</div><input id="hwTitle" value="${esc(f.title)}" style="width:100%;${inp}">
+    <div class="label">${hT("hwClasses")}</div><div class="chips">${classes.length?chips(classes,"data-hwc",f.classes,esc):`<span class="mut small">${hT("hwNoClass")}</span>`}</div>
+    <div class="label">${hT("hwTopics")}</div><div class="chips">${chips(Array.from({length:MAXT},(_,i)=>i+1),"data-hwt",f.topics,u=>u+". "+esc(luName(u)))}</div>
+    <div class="label">${hT("hwYears")}</div><div class="chips">${chips(years,"data-hwy",f.years,yLabel)}</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
+      <div><div class="label">${hT("hwCount")}</div><input id="hwN" type="number" min="1" max="100" value="${esc(String(f.n))}" style="width:100px;${inp}"></div>
+      <div><div class="label">${hT("hwLimit")}</div><input id="hwLimit" type="number" min="0" max="300" value="${esc(String(f.limit))}" style="width:120px;${inp}"></div>
+      <div><div class="label">${hT("hwStart")}</div><input id="hwStart" type="date" value="${esc(f.start)}" style="${inp}"></div>
+      <div><div class="label">${hT("hwDue")}</div><input id="hwDue" type="date" value="${esc(f.due)}" style="${inp}"></div></div>
+    <div class="match" style="margin-top:12px">${hT("hwPool",pool.length)}</div>
+    <button class="btn" id="hwPick" ${pool.length?"":"disabled"}>${hT("hwPick")}</button></div>
+  <div class="card"><h3>${hT("hwSel")} (${f.qids.length})</h3>${selRows||`<div class="mut">${hT("hwNone")}</div>`}
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><input id="hwKw" value="${esc(f.kw||"")}" placeholder="${esc(hT("hwSearchPh"))}" style="flex:1;min-width:200px;${inp}"><button class="btn soft" id="hwSearch">${hT("hwSearch")}</button></div>
+    ${foundRows}</div>
+  <div class="card" style="display:flex;gap:10px"><button class="btn" id="hwSave">${hT("hwSave")}</button><button class="btn soft" id="hwCancel">${hT("hwCancel")}</button></div>`;
+}
+function previewQ(id){
+  const q=S.Q.find(x=>x.id===id); if(!q)return;
+  const o=document.createElement("div"); o.className="ov"; const exp=S.lang==="zh"?(q.exp_zh||q.exp_en):(q.exp_en||q.exp_zh);
+  o.innerHTML=`<div class="card" style="max-width:640px;max-height:90vh;overflow:auto"><span class="tag">${esc(srcTag(q))} · ${esc(topicTag(q))}</span><div class="qtext">${rich(q.q)}</div>${q.image?`<img class="qimg" src="${esc(imgSrc(q.image))}" alt="">`:""}
+    ${optHtml(q,L=>L===q.answer?{cls:"right",mark:t("right"),dis:true}:{cls:"",mark:"",dis:true})}<div class="why"><span>${t("why")}</span></div><div>${rich(exp)}</div><button class="btn" id="pvClose" style="margin-top:12px">${hT("close")}</button></div>`;
+  document.body.appendChild(o); o.querySelector("#pvClose").onclick=()=>o.remove(); o.addEventListener("click",ev=>{if(ev.target===o)o.remove()}); typeset(o);
+}
+async function saveHw(){
+  const f=S.T.hwForm;
+  if(!f.title.trim()) return toast(hT("hwNeedTitle")); if(!f.classes.size) return toast(hT("hwNeedClass")); if(!f.qids.length) return toast(hT("hwNeedQ"));
+  const start=new Date(f.start+"T00:00:00").getTime(), due=new Date(f.due+"T23:59:59").getTime();
+  if(!(start>0&&due>0)||due<start) return toast(hT("hwDates"));
+  try{ await api("tHwSave",{id:f.id,title:f.title.trim(),classes:[...f.classes],topics:[...f.topics],qids:f.qids,limit:Math.max(0,Math.round(+f.limit)||0),start,due});
+    S.T.hwForm=null; toast(hT("hwSaved")); loadHwList(); }
+  catch(e){ toast(e.message); }
+}
+async function openHwRes(id){
+  S.T.hwRes={id,loading:true}; render(true);
+  try{ S.T.hwRes={id,data:await api("tHwResult",{id})}; }catch(e){ S.T.hwRes={id,err:e.message}; }
+  if(S.view==="teacher")render(true);
+}
+function vHwRes(){
+  const R=S.T.hwRes, back=`<a href="#" id="hwBack" style="color:var(--pri);font-weight:600;text-decoration:none;display:inline-block;margin-bottom:12px">${t("detailBack")}</a>`;
+  if(R.loading) return `<div class="card">${back}<div class="mut">${t("loading")}</div></div>`;
+  if(R.err) return `<div class="card">${back}<div class="err">${esc(R.err)}</div></div>`;
+  const D=R.data, a=D.assignment, n=a.qids.length, st=[...D.students].sort((x,y)=>(x.cls>y.cls?1:x.cls<y.cls?-1:0)||(x.name>y.name?1:-1));
+  const sub=st.filter(s=>s.n>0), avg=sub.length?Math.round(100*sub.reduce((x,s)=>x+s.score/Math.max(1,n),0)/sub.length):null;
+  const chip=s=>s.n===0?`<span class="pillst" style="background:var(--bad-soft);color:var(--bad)">${hT("rMiss")}</span>`
+    :s.n<n?`<span class="pillst" style="background:var(--na);color:var(--mut)">${hT("rPartial",s.n,n)}</span>`
+    :s.late?`<span class="pillst" style="background:#fff3cd;color:#8a6d00">${hT("rLate")}</span>`:`<span class="pillst" style="background:var(--ok-soft);color:var(--ok)">${hT("rOk")}</span>`;
+  const mark=(s,q)=>{const x=s.ans[q]; return x?`<td style="text-align:center;color:${x.c?"var(--ok)":"var(--bad)"};font-weight:700">${x.c?"✓":"✕"}</td>`:`<td style="text-align:center" class="mut">–</td>`};
+  return `<div class="card">${back}<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><h2 style="margin:0">${esc(a.title)}</h2>
+      <div class="mut small">${esc(a.classes.join(", "))} · ${hT("hwMeta",n,a.limit,fdate(a.due))}</div></div><button class="btn soft" id="hwExport">${hT("rExport")}</button></div>
+    <div class="tiles" style="margin-top:14px"><div class="tile"><b>${st.length}</b><span>${hT("rEligible")}</span></div><div class="tile ok"><b>${sub.length}</b><span>${hT("rSubmitted")}</span></div>
+      <div class="tile bad"><b>${st.length-sub.length}</b><span>${hT("rMissing")}</span></div><div class="tile ok"><b>${avg==null?"–":avg+"%"}</b><span>${hT("rAvg")}</span></div></div></div>
+  <div class="card"><h3>${hT("rStu")}</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>${t("cName")}</th><th>${t("cClass")}</th><th>${hT("rStatus")}</th><th>${hT("rScore")}</th><th>${hT("rTime")}</th>${a.qids.map((_,i)=>`<th style="text-align:center">${i+1}</th>`).join("")}</tr></thead><tbody>
+    ${st.map(s=>`<tr><td><b>${esc(s.name)}</b></td><td>${esc(s.cls)}</td><td>${chip(s)}</td><td>${s.n?`${s.score}/${n} (${pct(s.score,n)}%)`:"–"}</td><td>${s.ts?fdt(s.ts):"–"}</td>${a.qids.map(q=>mark(s,q)).join("")}</tr>`).join("")}</tbody></table></div></div>
+  <div class="card"><h3>${hT("rByQ")}</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>${t("cQ")}</th><th>${t("cAcc")}</th><th>${hT("rWrong")}</th></tr></thead><tbody>
+    ${D.questions.map((q,i)=>`<tr><td>${i+1}</td><td><div class="small mut">${qTag(q.qid)}</div><div style="max-width:420px;overflow-wrap:anywhere">${stemOf(q.qid)}</div></td>
+      <td style="${q.att&&pct(q.ok,q.att)<50?"color:var(--bad);font-weight:700":""}">${q.att?pct(q.ok,q.att)+"%":"–"}</td><td>${q.topWrong?`${q.topWrong} <span class="mut small">(${q.topWrongN})</span>`:"–"}</td></tr>`).join("")}</tbody></table></div></div>`;
+}
+function exportHwCSV(){
+  const R=S.T.hwRes; if(!R||!R.data)return; const D=R.data,a=D.assignment,n=a.qids.length, q=v=>`"${String(v).replace(/"/g,'""')}"`;
+  const head=["ID","Name","Class","Answered","Score","Out of","Submitted at","Late"].concat(a.qids.map((_,i)=>"Q"+(i+1)));
+  const lines=[head.map(q).join(",")].concat(D.students.map(s=>[s.id,s.name,s.cls,s.n,s.score,n,s.ts?new Date(s.ts).toISOString():"",s.late?"late":""].concat(a.qids.map(id=>s.ans[id]?(s.ans[id].c?"1":"0"):"")).map(q).join(",")));
+  const el=document.createElement("a"); el.href=URL.createObjectURL(new Blob(["﻿"+lines.join("\r\n")],{type:"text/csv;charset=utf-8"})); el.download=`assignment_${a.title}.csv`; document.body.appendChild(el); el.click(); el.remove();
+}
+function bindHw(){
+  const T=S.T, f=T.hwForm, on=(sel,fn)=>document.querySelectorAll(sel).forEach(e=>e.addEventListener("click",ev=>{ev.preventDefault();fn(e)}));
+  if(T.tab!=="hw")return;
+  on("#hwNew",()=>{T.hwForm=newHwForm();render()});
+  on("[data-hwe]",e=>{const a=(T.hw||[]).find(x=>x.id===e.dataset.hwe); if(a){T.hwForm=newHwForm(a);render()}});
+  on("[data-hwx]",async e=>{ if(!window.confirm(hT("hwDelConfirm")))return; try{await api("tHwDelete",{id:e.dataset.hwx})}catch(x){toast(x.message)} loadHwList(); });
+  on("[data-hwres]",e=>openHwRes(e.dataset.hwres));
+  on("#hwBack",()=>{T.hwRes=null;render(true)}); on("#hwExport",exportHwCSV);
+  if(!f)return;
+  const bindIn=(id,key)=>{const el=$(id); if(el) el.oninput=()=>{f[key]=el.value}};
+  bindIn("#hwTitle","title"); bindIn("#hwN","n"); bindIn("#hwLimit","limit"); bindIn("#hwStart","start"); bindIn("#hwDue","due"); bindIn("#hwKw","kw");
+  const kw=$("#hwKw"); if(kw) kw.onkeydown=e=>{ if(e.key==="Enter"){e.preventDefault();render(true)} };
+  const tog=(set,v)=>{set.has(v)?set.delete(v):set.add(v)};
+  on("[data-hwc]",e=>{tog(f.classes,e.dataset.hwc);render(true)});
+  on("[data-hwt]",e=>{tog(f.topics,+e.dataset.hwt);render(true)});
+  on("[data-hwy]",e=>{tog(f.years,+e.dataset.hwy);render(true)});
+  on("#hwPick",()=>{ const n=Math.max(1,Math.min(100,Math.round(+f.n)||10)); f.n=n; f.qids=shuffle(hwPool(f)).slice(0,n).map(q=>q.id); render(true) });
+  on("[data-hwr]",e=>{ const i=+e.dataset.hwr, cand=hwPool(f).filter(q=>!f.qids.includes(q.id)); if(!cand.length){toast(hT("hwNoSwap"));return} f.qids[i]=cand[Math.floor(Math.random()*cand.length)].id; render(true) });
+  on("[data-hwd]",e=>{ f.qids.splice(+e.dataset.hwd,1); render(true) });
+  on("[data-hwa]",e=>{ if(!f.qids.includes(e.dataset.hwa)&&f.qids.length<100)f.qids.push(e.dataset.hwa); render(true) });
+  on("[data-hwv]",e=>previewQ(e.dataset.hwv));
+  on("#hwSearch",()=>render(true)); on("#hwCancel",()=>{T.hwForm=null;render(true)}); on("#hwSave",saveHw);
+}
 function openPw(){
   const o=document.createElement("div"); o.className="ov";
   o.innerHTML=`<div class="card"><h2 style="margin:0 0 10px">${t("chPw")}</h2>
