@@ -114,6 +114,7 @@ h2{margin:0 0 4px;font-size:28px}h3{margin:0;font-size:17px}
 .tbl th{text-align:left;color:var(--mut);font-size:12px;padding:8px;cursor:pointer;white-space:nowrap;user-select:none}
 .tbl td{padding:9px 8px;border-top:1px solid var(--line);vertical-align:top}.tbl tr.click{cursor:pointer}.tbl tr.click:hover{background:var(--pri-soft)}
 .sel{padding:8px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.hwcols{display:grid;grid-template-columns:3fr 1fr;gap:20px;align-items:start}.hwlist{display:flex;flex-direction:column;gap:6px;margin-top:6px;max-height:440px;overflow:auto;padding-right:4px}.hwlist .chip{text-align:left;border-radius:10px;width:100%}@media(max-width:700px){.hwcols{grid-template-columns:1fr}}
 .mbrow{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 .pillst{font-size:12px;font-weight:700;border-radius:99px;padding:3px 10px;white-space:nowrap}
 .login{max-width:400px;margin:40px auto}
@@ -843,8 +844,8 @@ function vHwForm(){
   return `<div class="card"><h3>${f.id?hT("hwEdit"):hT("newHw")}</h3>${f.edit?`<div class="note" style="margin-bottom:10px">${hT("editNote")}</div>`:""}
     <div class="label">${hT("hwName")}</div><input id="hwTitle" value="${esc(f.title)}" style="width:100%;${inp}">
     <div class="label">${hT("hwClasses")}</div><div class="chips">${classes.length?chips(classes,"data-hwc",f.classes,esc):`<span class="mut small">${hT("hwNoClass")}</span>`}</div>
-    <div class="label">${hT("hwTopics")}</div><div class="chips">${chips(Array.from({length:MAXT},(_,i)=>i+1),"data-hwt",f.topics,u=>u+". "+esc(luName(u)))}</div>
-    <div class="label">${hT("hwYears")}</div><div class="chips">${chips(years,"data-hwy",f.years,yLabel)}</div>
+    <div class="hwcols"><div><div class="label">${hT("hwTopics")}</div><div class="hwlist">${chips(Array.from({length:MAXT},(_,i)=>i+1),"data-hwt",f.topics,u=>u+". "+esc(luName(u)))}</div></div>
+    <div><div class="label">${hT("hwYears")}</div><div class="hwlist">${chips(years,"data-hwy",f.years,yLabel)}</div></div></div>
     <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
       <div><div class="label">${hT("hwCount")}</div><input id="hwN" type="number" min="1" max="100" value="${esc(String(f.n))}" style="width:100px;${inp}"></div>
       <div><div class="label">${hT("hwLimit")}</div><input id="hwLimit" type="number" min="0" max="300" value="${esc(String(f.limit))}" style="width:120px;${inp}"></div>
