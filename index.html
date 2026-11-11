@@ -949,11 +949,12 @@ function bindHw(){
 
 /* ============ Teacher groups ============ */
 async function loadGroups(){
-  try{ const r=await api("tGroupList"); S.T.groups=r.groups||[]; S.T.gStu=r.students||[]; }catch(e){ S.T.groups=[]; S.T.gStu=[]; toast(e.message); }
+  try{ const r=await api("tGroupList"); S.T.groups=r.groups||[]; S.T.gStu=r.students||[]; S.T.grpErr=""; }catch(e){ S.T.groups=[]; S.T.gStu=[]; S.T.grpErr=e.message; toast(e.message); }
   if(S.view==="teacher")render(true);
 }
 function vGroups(){
   const T=S.T; if(!T.groups) return `<div class="card mut">${t("loading")}</div>`;
+  if(T.grpErr) return `<div class="card"><div class="err">${esc(T.grpErr)}</div><div class="note">${S.lang==="zh"?"後台（Apps Script）未更新到最新版，請重新貼上新的 Code.gs 並「部署 → 管理部署 → 編輯 → 新版本」。":"The Apps Script backend is not up to date. Paste the new Code.gs and redeploy (Deploy → Manage deployments → Edit → New version)."}</div></div>`;
   if(T.grpForm) return vGroupForm();
   const rows=T.groups.map(g=>`<div class="mbrow"><div style="flex:1;min-width:0"><b>${esc(g.name)}</b><div class="small mut">${hT("grpMem",g.members.length)}</div></div>
     <button class="btn soft" data-grpe="${esc(g.id)}" style="padding:5px 12px;font-size:13px">${hT("hwEdit")}</button><button class="btn soft" data-grpx="${esc(g.id)}" style="padding:5px 12px;font-size:13px">${hT("hwDel")}</button></div>`).join("");
