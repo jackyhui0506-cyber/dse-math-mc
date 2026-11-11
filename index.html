@@ -933,8 +933,8 @@ function bindHw(){
   on("#hwBack",()=>{T.hwRes=null;render(true)}); on("#hwExport",exportHwCSV);
   if(!f)return;
   const bindIn=(id,key)=>{const el=$(id); if(el) el.oninput=()=>{f[key]=el.value}};
-  bindIn("#hwTitle","title"); bindIn("#hwN","n"); bindIn("#hwLimit","limit"); bindIn("#hwStart","start"); bindIn("#hwDue","due"); bindIn("#hwKw","kw"); const oc=$("#hwOnce"); if(oc) oc.onchange=()=>{f.once=oc.checked};
-  const kw=$("#hwKw"); if(kw) kw.onkeydown=e=>{ if(e.key==="Enter"){e.preventDefault();render(true)} };
+  bindIn("#hwTitle","title"); bindIn("#hwN","n"); bindIn("#hwLimit","limit"); bindIn("#hwStart","start"); bindIn("#hwDue","due");  const oc=$("#hwOnce"); if(oc) oc.onchange=()=>{f.once=oc.checked};
+  liveSearch("#hwKw",v=>{f.kw=v});
   const tog=(set,v)=>{set.has(v)?set.delete(v):set.add(v)};
   on("[data-hwc]",e=>{tog(f.classes,e.dataset.hwc);render(true)});
   on("[data-hwt]",e=>{tog(f.topics,+e.dataset.hwt);render(true)});
@@ -977,6 +977,14 @@ async function saveGroup(){
   const f=S.T.grpForm; if(!f.name.trim()) return toast(hT("grpNeedName"));
   try{ await api("tGroupSave",{id:f.id,name:f.name.trim(),members:[...f.members]}); S.T.grpForm=null; toast(hT("hwSaved")); await loadGroups(); }catch(e){ toast(e.message); }
 }
+/* live search box: re-render the list while typing, keep focus/caret, wait for IME (Chinese) composition to finish */
+function liveSearch(id,set){
+  const el=$(id); if(!el)return; let comp=false;
+  const go=()=>{ set(el.value); const pos=el.selectionStart; render(true); const n=$(id); if(n){n.focus(); try{n.setSelectionRange(pos,pos)}catch(e){}} document.querySelectorAll("#app .hwlist").forEach(l=>{l.scrollTop=0}); };
+  el.addEventListener("compositionstart",()=>{comp=true}); el.addEventListener("compositionend",()=>{comp=false;go()});
+  el.addEventListener("input",()=>{ if(!comp)go(); });
+  el.onkeydown=e=>{ if(e.key==="Enter")e.preventDefault() };
+}
 function bindGroups(){
   const T=S.T, on=(sel,fn)=>document.querySelectorAll(sel).forEach(e=>e.addEventListener("click",ev=>{ev.preventDefault();fn(e)}));
   if(T.tab!=="groups")return;
@@ -984,9 +992,9 @@ function bindGroups(){
   on("[data-grpe]",e=>{const g=T.groups.find(x=>x.id===e.dataset.grpe); if(g){T.grpForm={id:g.id,name:g.name,members:new Set(g.members),cls:"",kw:""};render()}});
   on("[data-grpx]",async e=>{ if(!window.confirm(hT("grpDel")))return; try{await api("tGroupDelete",{id:e.dataset.grpx})}catch(x){toast(x.message)} loadGroups(); });
   const f=T.grpForm; if(!f)return;
-  const nm=$("#grpName"); if(nm) nm.oninput=()=>{f.name=nm.value}; const kw=$("#grpKw"); if(kw){kw.oninput=()=>{f.kw=kw.value}; kw.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();render(true)}}}
+  const nm=$("#grpName"); if(nm) nm.oninput=()=>{f.name=nm.value}; liveSearch("#grpKw",v=>{f.kw=v});
   const vis=()=>{const k=(f.kw||"").trim().toLowerCase(); return T.gStu.filter(s=>(!f.cls||s.cls===f.cls)&&(!k||s.name.toLowerCase().includes(k)||s.id.toLowerCase().includes(k)))};
-  on("[data-grpc]",e=>{f.cls=e.dataset.grpc;render(true)});
+  on("[data-grpc]",e=>{f.cls=e.dataset.grpc;render(true);document.querySelectorAll("#app .hwlist").forEach(l=>{l.scrollTop=0})});
   on("[data-grpm]",e=>{const id=e.dataset.grpm; f.members.has(id)?f.members.delete(id):f.members.add(id); render(true)});
   on("#grpAll",()=>{vis().forEach(s=>f.members.add(s.id));render(true)}); on("#grpNone",()=>{vis().forEach(s=>f.members.delete(s.id));render(true)});
   on("#grpSave",saveGroup); on("#grpCancel",()=>{T.grpForm=null;render(true)});
