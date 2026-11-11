@@ -277,7 +277,9 @@ const HWT={
   hwEmpty:"未有練習。按「＋ 新增練習」開始。",hwCQ:"題數",hwCLimit:"限時",hwCCreated:"建立日期",hwCStart:"開放",hwCDue:"截止",hwCDone:"已交/應交",hwCAvg:"平均分",hwRes:"成績",hwEdit:"編輯",
   hwDelConfirm:"確定刪除這份練習？學生將不再看到它（已作答紀錄會保留）。",hwNeedTitle:"請輸入練習名稱",hwNeedClass:"請揀最少一個班別",hwNeedQ:"請最少揀一題",hwDates:"日期不正確（截止日期不可早於開放日期）",hwSaved:"已儲存",
   hwNoClass:"未有班別資料（請在 Students 分頁填寫 Class 欄）",hwPool:n=>`符合條件的題目：${n} 題`,hwNoSwap:"沒有其他符合條件的題目可換",hwNone:"尚未揀題：按「自動抽題」或手動加題",
-  hwOnce:"只可做一次（不可重做）",onceTag:"只可做一次",hwDup:"複製",hwDupTitle:" (副本)",hwConfirm:(ti,tg,n,q,dd,lim,once)=>`派發「${ti}」\n對象：${tg}\n約 ${n} 位學生 · ${q} 題 · ${lim?lim+" 分鐘":"不限時"} · 截止 ${dd}${once?" · 只可做一次":""}\n\n確定派發？`,
+  hwAvoid:n=>`避開已派發給所選班別／組別的題目（目前排除 ${n} 題）`,hwUsedTag:"已派發過",hwShort:(a,b)=>`符合條件的新題只有 ${a} 題，少於 ${b} 題`,
+  weakT:"答得差的題目",weakNone:"暫時未有答對率低於 60% 的題目",weakWho:"答錯：",weakDist:"選項分佈",weakNew:"用這些題目建立新練習",weakNote:"答對率低於 60%（以每位學生最新一次作答計）",weakCorrect:"正確",
+  hwWeakSuffix:" — 補底練習",hwOnce:"只可做一次（不可重做）",onceTag:"只可做一次",hwDup:"複製",hwDupTitle:" (副本)",hwConfirm:(ti,tg,n,q,dd,lim,once)=>`派發「${ti}」\n對象：${tg}\n約 ${n} 位學生 · ${q} 題 · ${lim?lim+" 分鐘":"不限時"} · 截止 ${dd}${once?" · 只可做一次":""}\n\n確定派發？`,
   grpNew:"＋ 新增組別",grpName:"組別名稱",grpMem:n=>`成員（${n}）`,grpEmpty:"未有組別。組別只有你自己睇到，可跨班加入學生。",grpPick:"按班別篩選（再按「全選」可一次加入整班）",grpSearchPh:"搜尋姓名或學號",grpSave:"儲存組別",grpDel:"確定刪除這個組別？已派發的練習將不再包括這個組別的學生。",grpNeedName:"請輸入組別名稱",grpTargets:"派發對象：班別",grpGroupsL:"我的組別",grpOnly:"（組別）",grpUnknown:"（其他老師的組別）",grpAll:"全選",grpNone:"清除",grpShown:n=>`顯示 ${n} 人`,
   rEligible:"應交",rSubmitted:"已交",rMissing:"未交",rAvg:"平均分",rStatus:"狀態",rScore:"分數",rTime:"提交時間",rLate:"遲交",rPartial:(a,b)=>`未完成 ${a}/${b}`,rMiss:"未交",rOk:"已交",rByQ:"各題答對率",rWrong:"最多人揀錯",rStu:"學生成績",rExport:"匯出 CSV",editNote:"此練習已派發，修改題目後學生會見到新版本。"},
  en:{hwTitle:"Assignments from your teacher",todo:"To do",overdue:"Overdue",done:(s,n)=>`Done ${s}/${n}`,startHw:"Start",redoHw:"Redo",hwMeta:(n,l,d)=>`${n} questions · ${l?l+" min":"No time limit"} · due ${d}`,noQ:"Questions for this assignment were not found",noLimit:"No limit",
@@ -287,7 +289,9 @@ const HWT={
   hwEmpty:"No assignments yet. Press “+ New assignment”.",hwCQ:"Questions",hwCLimit:"Time limit",hwCCreated:"Created",hwCStart:"Opens",hwCDue:"Due",hwCDone:"Submitted/Total",hwCAvg:"Average",hwRes:"Results",hwEdit:"Edit",
   hwDelConfirm:"Delete this assignment? Students will no longer see it (their answers are kept).",hwNeedTitle:"Please enter a title",hwNeedClass:"Please choose at least one class",hwNeedQ:"Please select at least one question",hwDates:"Invalid dates (due date cannot be before the opening date)",hwSaved:"Saved",
   hwNoClass:"No class data (fill the Class column in the Students sheet)",hwPool:n=>`Matching questions: ${n}`,hwNoSwap:"No other matching question to swap in",hwNone:"No questions yet: press “Pick at random” or add manually",
-  hwOnce:"One attempt only (no redo)",onceTag:"One attempt only",hwDup:"Copy",hwDupTitle:" (copy)",hwConfirm:(ti,tg,n,q,dd,lim,once)=>`Assign “${ti}”\nTo: ${tg}\nAbout ${n} students · ${q} questions · ${lim?lim+" min":"No time limit"} · due ${dd}${once?" · one attempt only":""}\n\nProceed?`,
+  hwAvoid:n=>`Skip questions already assigned to the chosen classes/groups (${n} excluded)`,hwUsedTag:"Already assigned",hwShort:(a,b)=>`Only ${a} new matching questions, fewer than ${b}`,
+  weakT:"Weak questions",weakNone:"No question is below 60% correct yet",weakWho:"Wrong: ",weakDist:"Answer spread",weakNew:"Create a new assignment from these",weakNote:"Correct rate below 60% (latest answer per student)",weakCorrect:"correct",
+  hwWeakSuffix:" — review",hwOnce:"One attempt only (no redo)",onceTag:"One attempt only",hwDup:"Copy",hwDupTitle:" (copy)",hwConfirm:(ti,tg,n,q,dd,lim,once)=>`Assign “${ti}”\nTo: ${tg}\nAbout ${n} students · ${q} questions · ${lim?lim+" min":"No time limit"} · due ${dd}${once?" · one attempt only":""}\n\nProceed?`,
   grpNew:"+ New group",grpName:"Group name",grpMem:n=>`Members (${n})`,grpEmpty:"No groups yet. Groups are private to you and can mix students from different classes.",grpPick:"Filter by class (then “Select all” adds the whole class)",grpSearchPh:"Search name or ID",grpSave:"Save group",grpDel:"Delete this group? Assignments already sent will no longer include its students.",grpNeedName:"Please enter a group name",grpTargets:"Send to: classes",grpGroupsL:"My groups",grpOnly:"(group)",grpUnknown:"(another teacher's group)",grpAll:"Select all",grpNone:"Clear",grpShown:n=>`${n} shown`,
   rEligible:"Total",rSubmitted:"Submitted",rMissing:"Not submitted",rAvg:"Average",rStatus:"Status",rScore:"Score",rTime:"Submitted at",rLate:"Late",rPartial:(a,b)=>`Incomplete ${a}/${b}`,rMiss:"Not submitted",rOk:"Submitted",rByQ:"Correct rate by question",rWrong:"Most common wrong",rStu:"Student results",rExport:"Export CSV",editNote:"This assignment is already out; students will see the updated version after you save."}};
 const hT=(k,...a)=>{ const v=HWT[S.lang][k]; return typeof v==="function"?v(...a):v };
@@ -826,11 +830,12 @@ async function loadHwList(){
   try{ S.T.hw=(await api("tHwList")).assignments||[]; }catch(e){ S.T.hw=[]; toast(e.message); }
   S.T.hwLoading=false; if(S.view==="teacher")render(true);
 }
-function hwPool(f){ return S.Q.filter(q=>(!f.topics.size||topicsOf(q).some(u=>f.topics.has(u)))&&(!f.years.size||f.years.has(q.year))); }
+function hwUsed(f){ const u=new Set(); (S.T.hw||[]).forEach(a=>{ if(a.id!==f.id&&a.classes.some(c=>f.classes.has(c))) a.qids.forEach(q=>u.add(q)); }); return u; }
+function hwPool(f,all){ const u=(f.avoid&&!all)?hwUsed(f):null; return S.Q.filter(q=>(!f.topics.size||topicsOf(q).some(x=>f.topics.has(x)))&&(!f.years.size||f.years.has(q.year))&&!(u&&u.has(q.id))); }
 function newHwForm(a){
   const now=Date.now();
-  if(a) return {id:a.id,title:a.title,classes:new Set(a.classes),topics:new Set(a.topics||[]),years:new Set(),n:a.qids.length,limit:a.limit||"",once:!!a.once,start:d2s(a.start||now),due:d2s(a.due||now+7*864e5),qids:[...a.qids],kw:"",edit:true};
-  return {id:null,title:"",classes:new Set(),topics:new Set(),years:new Set(),n:10,limit:"",once:false,start:d2s(now),due:d2s(now+7*864e5),qids:[],kw:""};
+  if(a) return {id:a.id,title:a.title,classes:new Set(a.classes),topics:new Set(a.topics||[]),years:new Set(),n:a.qids.length,limit:a.limit||"",once:!!a.once,avoid:true,start:d2s(a.start||now),due:d2s(a.due||now+7*864e5),qids:[...a.qids],kw:"",edit:true};
+  return {id:null,title:"",classes:new Set(),topics:new Set(),years:new Set(),n:10,limit:"",once:false,avoid:true,start:d2s(now),due:d2s(now+7*864e5),qids:[],kw:""};
 }
 function vHw(){
   const T=S.T; if(T.hwRes) return vHwRes(); if(T.hwForm) return vHwForm();
@@ -846,11 +851,11 @@ function vHwForm(){
   const f=S.T.hwForm, classes=S.T.data?.classes||[], pool=hwPool(f), years=[...new Set(S.Q.map(q=>q.year))].sort((a,b)=>b-a);
   const chips=(arr,att,sel,lab)=>arr.map(v=>`<button class="chip ${sel.has(v)?"on":""}" ${att}="${esc(String(v))}">${lab(v)}</button>`).join("");
   const kw=(f.kw||"").trim().toLowerCase();
-  const found=kw?pool.filter(q=>!f.qids.includes(q.id)&&(q.id.toLowerCase().includes(kw)||(srcTag(q)+" "+topicTag(q)).toLowerCase().includes(kw)||String(q.q).toLowerCase().includes(kw))).slice(0,15):[];
+  const usedSet=hwUsed(f), allPool=hwPool(f,true), found=kw?allPool.filter(q=>!f.qids.includes(q.id)&&(q.id.toLowerCase().includes(kw)||(srcTag(q)+" "+topicTag(q)).toLowerCase().includes(kw)||String(q.q).toLowerCase().includes(kw))).slice(0,15):[];
   const b=(k,i,l)=>`<button class="btn soft" data-${k}="${esc(String(i))}" style="padding:4px 10px;font-size:12px">${hT(l)}</button>`;
   const selRows=f.qids.map((id,i)=>`<div class="mbrow"><b>${i+1}.</b><div style="flex:1;min-width:0"><div class="small mut">${qTag(id)}</div><div style="overflow-wrap:anywhere">${stemOf(id)}</div></div>
      <span style="white-space:nowrap">${b("hwv",id,"hwPrev")} ${b("hwr",i,"hwSwap")} ${b("hwd",i,"hwDel")}</span></div>`).join("");
-  const foundRows=found.map(q=>`<div class="mbrow"><div style="flex:1;min-width:0"><div class="small mut">${esc(srcTag(q))} · ${esc(topicTag(q))}</div><div style="overflow-wrap:anywhere">${snip(q.q,80)}</div></div>
+  const foundRows=found.map(q=>`<div class="mbrow"><div style="flex:1;min-width:0"><div class="small mut">${esc(srcTag(q))} · ${esc(topicTag(q))}${usedSet.has(q.id)?` · <b style="color:var(--bad)">${hT("hwUsedTag")}</b>`:""}</div><div style="overflow-wrap:anywhere">${snip(q.q,80)}</div></div>
      <span style="white-space:nowrap">${b("hwv",q.id,"hwPrev")} ${b("hwa",q.id,"hwAdd")}</span></div>`).join("");
   const inp="padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit";
   return `<div class="card"><h3>${f.id?hT("hwEdit"):hT("newHw")}</h3>${f.edit?`<div class="note" style="margin-bottom:10px">${hT("editNote")}</div>`:""}
@@ -865,6 +870,7 @@ function vHwForm(){
       <div><div class="label">${hT("hwStart")}</div><input id="hwStart" type="date" value="${esc(f.start)}" style="${inp}"></div>
       <div><div class="label">${hT("hwDue")}</div><input id="hwDue" type="date" value="${esc(f.due)}" style="${inp}"></div></div>
     <label style="display:flex;gap:8px;align-items:center;margin-top:12px;font-weight:600"><input type="checkbox" id="hwOnce" ${f.once?"checked":""}> ${hT("hwOnce")}</label>
+    <label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input type="checkbox" id="hwAvoid" ${f.avoid?"checked":""}> ${hT("hwAvoid",allPool.filter(q=>usedSet.has(q.id)).length)}</label>
     <div class="match" style="margin-top:12px">${hT("hwPool",pool.length)}</div>
     <button class="btn" id="hwPick" ${pool.length?"":"disabled"}>${hT("hwPick")}</button></div>
   <div class="card"><h3>${hT("hwSel")} (${f.qids.length})</h3>${selRows||`<div class="mut">${hT("hwNone")}</div>`}
@@ -912,9 +918,23 @@ function vHwRes(){
       <div class="tile bad"><b>${st.length-sub.length}</b><span>${hT("rMissing")}</span></div><div class="tile ok"><b>${avg==null?"–":avg+"%"}</b><span>${hT("rAvg")}</span></div></div></div>
   <div class="card"><h3>${hT("rStu")}</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>${t("cName")}</th><th>${t("cClass")}</th><th>${hT("rStatus")}</th><th>${hT("rScore")}</th><th>${hT("rTime")}</th>${a.qids.map((_,i)=>`<th style="text-align:center">${i+1}</th>`).join("")}</tr></thead><tbody>
     ${st.map(s=>`<tr><td><b>${esc(s.name)}</b></td><td>${esc(s.cls)}</td><td>${chip(s)}</td><td>${s.n?`${s.score}/${n} (${pct(s.score,n)}%)`:"–"}</td><td>${s.ts?fdt(s.ts):"–"}</td>${a.qids.map(q=>mark(s,q)).join("")}</tr>`).join("")}</tbody></table></div></div>
+  ${weakHtml(D,st)}
   <div class="card"><h3>${hT("rByQ")}</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>${t("cQ")}</th><th>${t("cAcc")}</th><th>${hT("rWrong")}</th></tr></thead><tbody>
     ${D.questions.map((q,i)=>`<tr><td>${i+1}</td><td><div class="small mut">${qTag(q.qid)}</div><div style="max-width:420px;overflow-wrap:anywhere">${stemOf(q.qid)}</div></td>
       <td style="${q.att&&pct(q.ok,q.att)<50?"color:var(--bad);font-weight:700":""}">${q.att?pct(q.ok,q.att)+"%":"–"}</td><td>${q.topWrong?`${q.topWrong} <span class="mut small">(${q.topWrongN})</span>`:"–"}</td></tr>`).join("")}</tbody></table></div></div>`;
+}
+
+function qDist(st,qid){ const d={}; st.forEach(s=>{const x=s.ans[qid]; if(x&&x.ch)d[x.ch]=(d[x.ch]||0)+1}); return d; }
+function weakList(D){ return D.questions.map((q,i)=>({...q,i})).filter(q=>q.att>0&&pct(q.ok,q.att)<60).sort((a,b)=>pct(a.ok,a.att)-pct(b.ok,b.att)); }
+function weakHtml(D,st){
+  const W=weakList(D); const q0=id=>S.Q.find(x=>x.id===id);
+  if(!W.length) return `<div class="card"><h3>${hT("weakT")}</h3><div class="mut">${hT("weakNone")}</div></div>`;
+  const rows=W.map(w=>{ const q=q0(w.qid), dist=qDist(st,w.qid), wrong=st.filter(s=>s.ans[w.qid]&&!s.ans[w.qid].c).map(s=>s.name);
+    const dd=Object.keys(dist).sort().map(k=>`<span class="pillst" style="background:${q&&k===q.answer?"var(--ok-soft)":"var(--na)"};color:${q&&k===q.answer?"var(--ok)":"var(--mut)"}">${k}: ${dist[k]}${q&&k===q.answer?" ✓":""}</span>`).join(" ");
+    return `<div class="mbrow" style="align-items:flex-start"><b style="min-width:28px">${w.i+1}.</b><div style="flex:1;min-width:0"><div class="small mut">${qTag(w.qid)}</div><div style="overflow-wrap:anywhere">${stemOf(w.qid)}</div>
+      <div style="margin-top:6px">${dd}</div><div class="small mut" style="margin-top:4px">${hT("weakWho")}${wrong.slice(0,15).map(esc).join("、")}${wrong.length>15?"…":""}</div></div>
+      <div style="text-align:right;white-space:nowrap"><b style="color:var(--bad);font-size:18px">${pct(w.ok,w.att)}%</b><div class="small mut">${w.ok}/${w.att} ${hT("weakCorrect")}</div><button class="btn soft" data-hwv="${esc(w.qid)}" style="padding:4px 10px;font-size:12px;margin-top:6px">${hT("hwPrev")}</button></div></div>`}).join("");
+  return `<div class="card"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><h3 style="margin:0">${hT("weakT")} (${W.length})</h3><div class="small mut">${hT("weakNote")}</div></div><button class="btn" id="hwWeakNew">${hT("weakNew")}</button></div>${rows}</div>`;
 }
 function exportHwCSV(){
   const R=S.T.hwRes; if(!R||!R.data)return; const D=R.data,a=D.assignment,n=a.qids.length, q=v=>`"${String(v).replace(/"/g,'""')}"`;
@@ -931,15 +951,17 @@ function bindHw(){
   on("[data-hwx]",async e=>{ if(!window.confirm(hT("hwDelConfirm")))return; try{await api("tHwDelete",{id:e.dataset.hwx})}catch(x){toast(x.message)} loadHwList(); });
   on("[data-hwres]",e=>openHwRes(e.dataset.hwres));
   on("#hwBack",()=>{T.hwRes=null;render(true)}); on("#hwExport",exportHwCSV);
+  if(T.hwRes) on("[data-hwv]",e=>previewQ(e.dataset.hwv));
+  on("#hwWeakNew",()=>{ const R=T.hwRes; if(!R||!R.data)return; const W=weakList(R.data); const f=newHwForm(); f.title=R.data.assignment.title+hT("hwWeakSuffix"); f.qids=W.map(w=>w.qid); f.n=f.qids.length; T.hwRes=null; T.hwForm=f; render(); });
   if(!f)return;
   const bindIn=(id,key)=>{const el=$(id); if(el) el.oninput=()=>{f[key]=el.value}};
-  bindIn("#hwTitle","title"); bindIn("#hwN","n"); bindIn("#hwLimit","limit"); bindIn("#hwStart","start"); bindIn("#hwDue","due");  const oc=$("#hwOnce"); if(oc) oc.onchange=()=>{f.once=oc.checked};
+  bindIn("#hwTitle","title"); bindIn("#hwN","n"); bindIn("#hwLimit","limit"); bindIn("#hwStart","start"); bindIn("#hwDue","due");  const oc=$("#hwOnce"); if(oc) oc.onchange=()=>{f.once=oc.checked}; const av=$("#hwAvoid"); if(av) av.onchange=()=>{f.avoid=av.checked;render(true)};
   liveSearch("#hwKw",v=>{f.kw=v});
   const tog=(set,v)=>{set.has(v)?set.delete(v):set.add(v)};
   on("[data-hwc]",e=>{tog(f.classes,e.dataset.hwc);render(true)});
   on("[data-hwt]",e=>{tog(f.topics,+e.dataset.hwt);render(true)});
   on("[data-hwy]",e=>{tog(f.years,+e.dataset.hwy);render(true)});
-  on("#hwPick",()=>{ const n=Math.max(1,Math.min(100,Math.round(+f.n)||10)); f.n=n; f.qids=shuffle(hwPool(f)).slice(0,n).map(q=>q.id); render(true) });
+  on("#hwPick",()=>{ const n=Math.max(1,Math.min(100,Math.round(+f.n)||10)); f.n=n; const pl=hwPool(f); f.qids=shuffle(pl).slice(0,n).map(q=>q.id); render(true); if(pl.length<n)toast(hT("hwShort",pl.length,n)) });
   on("[data-hwr]",e=>{ const i=+e.dataset.hwr, cand=hwPool(f).filter(q=>!f.qids.includes(q.id)); if(!cand.length){toast(hT("hwNoSwap"));return} f.qids[i]=cand[Math.floor(Math.random()*cand.length)].id; render(true); previewQ(f.qids[i]) });
   on("[data-hwd]",e=>{ f.qids.splice(+e.dataset.hwd,1); render(true) });
   on("[data-hwa]",e=>{ if(!f.qids.includes(e.dataset.hwa)&&f.qids.length<100)f.qids.push(e.dataset.hwa); render(true) });
