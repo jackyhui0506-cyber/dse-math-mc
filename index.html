@@ -207,7 +207,7 @@ const T = {
   srsWrong:"Added to your Mistake Book. It will come back tomorrow.",srsGrad:"🎓 Correct! This question now leaves your Mistake Book.",
   srsNext:d=>`Correct! This question will come back in ${d} day${d==1?"":"s"}.`,srsEarly:d=>`Correct, but it is not due for review yet. Answers count towards graduating from ${d}.`,
   teacherT:"Teacher dashboard",teacherView:"Teacher dashboard",studentView:"Student view",allClasses:"All classes",exportCSV:"Export CSV",
-  tabHw:"Assignments",tabOv:"Overview",tabSt:"Students",tabHard:"Hardest questions",tStudents:"students",tActive:"active in last 7 days",tAnswers:"answers",tAcc:"class accuracy",
+  tabHw:"Assignments",tabGrp:"Groups",tabOv:"Overview",tabSt:"Students",tabHard:"Hardest questions",tStudents:"students",tActive:"active in last 7 days",tAnswers:"answers",tAcc:"class accuracy",
   byLUclass:"Accuracy by topic (whole class)",activity14:"Activity, last 14 days",needAttn:"Needs attention",noAttn:"Everyone is on track.",
   cName:"Name",cClass:"Class",cAns:"Answers",cAcc:"Accuracy",cTried:"Tried",cOpen:"Open mistakes",cLast:"Last active",never:"never",today:"today",yesterday:"yesterday",
   daysAgo:n=>`${n} days ago`,inactive:n=>`${n}+ days inactive`,lowAcc:"low accuracy",hardNote:"Questions with at least 3 answers, lowest accuracy first.",
@@ -252,7 +252,7 @@ const T = {
   srsWrong:"已加入錯題簿，明日會再提醒你重做。",srsGrad:"🎓 答對了！這題已離開錯題簿。",
   srsNext:d=>`答對了！這題 ${d} 日後會再出現。`,srsEarly:d=>`答對了，但還未到複習時間，由 ${d} 起答對才計算畢業進度。`,
   teacherT:"老師後台",teacherView:"老師後台",studentView:"學生介面",allClasses:"全部班別",exportCSV:"匯出 CSV",
-  tabHw:"派發練習",tabOv:"總覽",tabSt:"學生",tabHard:"最多人答錯",tStudents:"學生人數",tActive:"7 日內有練習",tAnswers:"作答次數",tAcc:"全班答對率",
+  tabHw:"派發練習",tabGrp:"我的組別",tabOv:"總覽",tabSt:"學生",tabHard:"最多人答錯",tStudents:"學生人數",tActive:"7 日內有練習",tAnswers:"作答次數",tAcc:"全班答對率",
   byLUclass:"各課題答對率（全班）",activity14:"最近 14 日作答量",needAttn:"需要關注",noAttn:"所有學生狀況良好。",
   cName:"姓名",cClass:"班別",cAns:"作答",cAcc:"答對率",cTried:"已做",cOpen:"待改正",cLast:"最後練習",never:"從未",today:"今日",yesterday:"昨日",
   daysAgo:n=>`${n} 日前`,inactive:n=>`${n} 日以上沒練習`,lowAcc:"答對率偏低",hardNote:"至少 3 次作答的題目，答對率由低至高。",
@@ -268,7 +268,7 @@ const rich = s => esc(s).replace(/\n/g,"<br>");
 const pct = (a,b) => b ? Math.round(100*a/b) : 0;
 const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0; [a[i],a[j]]=[a[j],a[i]]} return a };
 const S = { lang: store.get("lang")||"zh", theme: store.get("theme")||"light", view:"login", user:null, token:null,
-  Q:[], att:[], A:{}, hw:[], rm:{}, selLU:new Set(), selYear:new Set(), pool:"all", n:10, quiz:null, mode:"ex", timeMode:"default", customMin:30, help:{}, T:{hw:null,hwForm:null,hwRes:null,hwLoading:false,cls:"",tab:"overview",data:null,loading:false,err:"",detail:null,sort:{k:"last",d:1}}, sort:"order", expLang:null, err:"" };
+  Q:[], att:[], A:{}, hw:[], rm:{}, selLU:new Set(), selYear:new Set(), pool:"all", n:10, quiz:null, mode:"ex", timeMode:"default", customMin:30, help:{}, T:{groups:null,gStu:[],grpForm:null,hw:null,hwForm:null,hwRes:null,hwLoading:false,cls:"",tab:"overview",data:null,loading:false,err:"",detail:null,sort:{k:"last",d:1}}, sort:"order", expLang:null, err:"" };
 const HWT={
  zh:{hwTitle:"老師派發的練習",todo:"未做",overdue:"已過期",done:(s,n)=>`已完成 ${s}/${n}`,startHw:"開始",redoHw:"重做",hwMeta:(n,l,d)=>`${n} 題 · ${l?l+" 分鐘":"不限時"} · 截止 ${d}`,noQ:"找不到這份練習的題目",noLimit:"不限時",
   remove:"移除",rmConfirm:"確定把這題從錯題簿移除？之後如果再答錯，會重新加入。",close:"關閉",
@@ -277,6 +277,8 @@ const HWT={
   hwEmpty:"未有練習。按「＋ 新增練習」開始。",hwCQ:"題數",hwCLimit:"限時",hwCCreated:"建立日期",hwCStart:"開放",hwCDue:"截止",hwCDone:"已交/應交",hwCAvg:"平均分",hwRes:"成績",hwEdit:"編輯",
   hwDelConfirm:"確定刪除這份練習？學生將不再看到它（已作答紀錄會保留）。",hwNeedTitle:"請輸入練習名稱",hwNeedClass:"請揀最少一個班別",hwNeedQ:"請最少揀一題",hwDates:"日期不正確（截止日期不可早於開放日期）",hwSaved:"已儲存",
   hwNoClass:"未有班別資料（請在 Students 分頁填寫 Class 欄）",hwPool:n=>`符合條件的題目：${n} 題`,hwNoSwap:"沒有其他符合條件的題目可換",hwNone:"尚未揀題：按「自動抽題」或手動加題",
+  hwOnce:"只可做一次（不可重做）",onceTag:"只可做一次",hwDup:"複製",hwDupTitle:" (副本)",hwConfirm:(ti,tg,n,q,dd,lim,once)=>`派發「${ti}」\n對象：${tg}\n約 ${n} 位學生 · ${q} 題 · ${lim?lim+" 分鐘":"不限時"} · 截止 ${dd}${once?" · 只可做一次":""}\n\n確定派發？`,
+  grpNew:"＋ 新增組別",grpName:"組別名稱",grpMem:n=>`成員（${n}）`,grpEmpty:"未有組別。組別只有你自己睇到，可跨班加入學生。",grpPick:"按班別篩選（再按「全選」可一次加入整班）",grpSearchPh:"搜尋姓名或學號",grpSave:"儲存組別",grpDel:"確定刪除這個組別？已派發的練習將不再包括這個組別的學生。",grpNeedName:"請輸入組別名稱",grpTargets:"派發對象：班別",grpGroupsL:"我的組別",grpOnly:"（組別）",grpUnknown:"（其他老師的組別）",grpAll:"全選",grpNone:"清除",grpShown:n=>`顯示 ${n} 人`,
   rEligible:"應交",rSubmitted:"已交",rMissing:"未交",rAvg:"平均分",rStatus:"狀態",rScore:"分數",rTime:"提交時間",rLate:"遲交",rPartial:(a,b)=>`未完成 ${a}/${b}`,rMiss:"未交",rOk:"已交",rByQ:"各題答對率",rWrong:"最多人揀錯",rStu:"學生成績",rExport:"匯出 CSV",editNote:"此練習已派發，修改題目後學生會見到新版本。"},
  en:{hwTitle:"Assignments from your teacher",todo:"To do",overdue:"Overdue",done:(s,n)=>`Done ${s}/${n}`,startHw:"Start",redoHw:"Redo",hwMeta:(n,l,d)=>`${n} questions · ${l?l+" min":"No time limit"} · due ${d}`,noQ:"Questions for this assignment were not found",noLimit:"No limit",
   remove:"Remove",rmConfirm:"Remove this question from your Mistake Book? If you get it wrong again it will come back.",close:"Close",
@@ -285,6 +287,8 @@ const HWT={
   hwEmpty:"No assignments yet. Press “+ New assignment”.",hwCQ:"Questions",hwCLimit:"Time limit",hwCCreated:"Created",hwCStart:"Opens",hwCDue:"Due",hwCDone:"Submitted/Total",hwCAvg:"Average",hwRes:"Results",hwEdit:"Edit",
   hwDelConfirm:"Delete this assignment? Students will no longer see it (their answers are kept).",hwNeedTitle:"Please enter a title",hwNeedClass:"Please choose at least one class",hwNeedQ:"Please select at least one question",hwDates:"Invalid dates (due date cannot be before the opening date)",hwSaved:"Saved",
   hwNoClass:"No class data (fill the Class column in the Students sheet)",hwPool:n=>`Matching questions: ${n}`,hwNoSwap:"No other matching question to swap in",hwNone:"No questions yet: press “Pick at random” or add manually",
+  hwOnce:"One attempt only (no redo)",onceTag:"One attempt only",hwDup:"Copy",hwDupTitle:" (copy)",hwConfirm:(ti,tg,n,q,dd,lim,once)=>`Assign “${ti}”\nTo: ${tg}\nAbout ${n} students · ${q} questions · ${lim?lim+" min":"No time limit"} · due ${dd}${once?" · one attempt only":""}\n\nProceed?`,
+  grpNew:"+ New group",grpName:"Group name",grpMem:n=>`Members (${n})`,grpEmpty:"No groups yet. Groups are private to you and can mix students from different classes.",grpPick:"Filter by class (then “Select all” adds the whole class)",grpSearchPh:"Search name or ID",grpSave:"Save group",grpDel:"Delete this group? Assignments already sent will no longer include its students.",grpNeedName:"Please enter a group name",grpTargets:"Send to: classes",grpGroupsL:"My groups",grpOnly:"(group)",grpUnknown:"(another teacher's group)",grpAll:"Select all",grpNone:"Clear",grpShown:n=>`${n} shown`,
   rEligible:"Total",rSubmitted:"Submitted",rMissing:"Not submitted",rAvg:"Average",rStatus:"Status",rScore:"Score",rTime:"Submitted at",rLate:"Late",rPartial:(a,b)=>`Incomplete ${a}/${b}`,rMiss:"Not submitted",rOk:"Submitted",rByQ:"Correct rate by question",rWrong:"Most common wrong",rStu:"Student results",rExport:"Export CSV",editNote:"This assignment is already out; students will see the updated version after you save."}};
 const hT=(k,...a)=>{ const v=HWT[S.lang][k]; return typeof v==="function"?v(...a):v };
 const t = (k,...a) => { const v=T[S.lang][k]; return typeof v==="function"?v(...a):v };
@@ -308,10 +312,14 @@ function demoApi(action,d){
   if(action==="login") return d.id ? {token:"demo",student:{id:d.id,name:d.id,cls:"Demo",role:d.id.toLowerCase()==="teacher"?"teacher":"student"}} : Promise.reject(new Error("BAD"));
   if(action==="changePassword") return {ok:true};
   const hk="demo_hw", hl=()=>{try{return JSON.parse(store.get(hk)||"[]")}catch(e){return[]}};
+  const gk="demo_grp", gl=()=>{try{return JSON.parse(store.get(gk)||"[]")}catch(e){return[]}};
+  if(action==="tGroupList") return {groups:gl(),students:Array.from({length:24},(_,i)=>({id:"s"+String(i+1).padStart(3,"0"),name:"Student "+(i+1),cls:i<12?"7A":"7B"}))};
+  if(action==="tGroupSave"){ const L=gl(), o={id:d.id||"G"+Math.random().toString(36).slice(2,8),name:d.name,members:d.members,by:"demo",created:Date.now()}; const i=L.findIndex(x=>x.id===o.id); if(i>=0)L[i]=o; else L.push(o); store.set(gk,JSON.stringify(L)); return {ok:true,id:o.id}; }
+  if(action==="tGroupDelete"){ store.set(gk,JSON.stringify(gl().filter(x=>x.id!==d.id))); return {ok:true}; }
   if(action==="mbRemove") return {ok:true};
   if(action==="hwList") return {assignments:hl().map(a=>({...a,status:{n:0,score:0,ts:0}}))};
   if(action==="tHwList") return {assignments:hl().map(a=>({...a,eligible:3,submitted:0,avg:null}))};
-  if(action==="tHwSave"){ const L=hl(), o={id:d.id||"A"+Math.random().toString(36).slice(2,8),title:d.title,classes:d.classes,topics:d.topics,qids:d.qids,limit:d.limit,start:d.start,due:d.due,created:Date.now(),by:"demo"}; const i=L.findIndex(x=>x.id===o.id); if(i>=0){o.created=L[i].created;L[i]=o}else L.push(o); store.set(hk,JSON.stringify(L)); return {ok:true,id:o.id}; }
+  if(action==="tHwSave"){ const L=hl(), o={id:d.id||"A"+Math.random().toString(36).slice(2,8),title:d.title,classes:d.classes,topics:d.topics,qids:d.qids,limit:d.limit,once:!!d.once,start:d.start,due:d.due,created:Date.now(),by:"demo"}; const i=L.findIndex(x=>x.id===o.id); if(i>=0){o.created=L[i].created;L[i]=o}else L.push(o); store.set(hk,JSON.stringify(L)); return {ok:true,id:o.id}; }
   if(action==="tHwDelete"){ store.set(hk,JSON.stringify(hl().filter(x=>x.id!==d.id))); return {ok:true}; }
   if(action==="tHwResult"){ const a=hl().find(x=>x.id===d.id); if(!a) return Promise.reject(new Error("Unknown assignment"));
     const students=["Demo A","Demo B","Demo C"].map((nm,k)=>{const ans={}; a.qids.forEach((q,j)=>{if(k<2)ans[q]={c:(j+k)%3!==0,ch:"A"}}); return {id:"d"+k,name:nm,cls:a.classes[0]||"",n:Object.keys(ans).length,score:Object.values(ans).filter(x=>x.c).length,ts:k<2?Date.now():0,late:false,ans}});
@@ -365,7 +373,9 @@ function render(keep){
   $("#outBtn").hidden=!S.user; $("#pwBtn").hidden=!S.user; $("#pwBtn").textContent=t("chPw"); const isT=!!(S.user&&S.user.role==="teacher"); $("#roleBtn").hidden=!isT; $("#roleBtn").textContent=S.view==="teacher"?t("studentView"):t("teacherView"); $("#outBtn").textContent=t("logout");
   $("#who").textContent = S.user ? `${S.user.cls?S.user.cls+" ":""}${S.user.name}` : "";
   const v={login:vLogin,home:vHome,quiz:vQuiz,done:vDone,qresult:vQResult,progress:vProgress,mb:vMB,teacher:vTeacher}[S.view]();
+  const sc=keep?[...document.querySelectorAll("#app .hwlist")].map(e=>e.scrollTop):[];
   $("#app").innerHTML=v; bind(); bindHelp(); typeset($("#app")); if(!keep)window.scrollTo(0,0);
+  document.querySelectorAll("#app .hwlist").forEach((e,i)=>{if(sc[i])e.scrollTop=sc[i]});
   if(S.view==="quiz"&&S.quiz.mode==="quiz"&&!S.quiz.submitted)startTimer(); else stopTimer();
 }
 function vLogin(){
@@ -639,7 +649,7 @@ function vTeacher(){
   if(T.err) return head+`<div class="card err">${esc(T.err)}</div>`;
   if(!d) return head+`<div class="card mut">${t("loading")}</div>`;
   if(T.detail) return head+vStudentDetail();
-  const tabs=`<div class="chips" style="margin:0 0 14px">${[["overview","tabOv"],["students","tabSt"],["hard","tabHard"],["hw","tabHw"]].map(([k,l])=>`<button class="chip ${T.tab===k?"on":""}" data-tab="${k}">${t(l)}</button>`).join("")}</div>`;
+  const tabs=`<div class="chips" style="margin:0 0 14px">${[["overview","tabOv"],["students","tabSt"],["hard","tabHard"],["hw","tabHw"],["groups","tabGrp"]].map(([k,l])=>`<button class="chip ${T.tab===k?"on":""}" data-tab="${k}">${t(l)}</button>`).join("")}</div>`;
   let body="";
   if(T.tab==="overview"){
     const o=d.totals, lus=[...d.lu].sort((a,b)=>a.lu-b.lu);
@@ -661,6 +671,7 @@ function vTeacher(){
         <td>${s.tried}</td><td>${s.mbOpen}${s.mbDue?` <span class="pillst" style="background:var(--bad-soft);color:var(--bad)">${s.mbDue} ${t("dueTile")}</span>`:""}</td><td style="${idle?"color:var(--bad)":""}">${ago(s.last)}</td></tr>`}).join("")}</tbody></table></div>
       ${d.students.length?"":`<div class="mut" style="padding:12px">${t("noData")}</div>`}</div>`;
   } else if(T.tab==="hw"){ body=vHw();
+  } else if(T.tab==="groups"){ body=vGroups();
   } else {
     body=`<div class="card"><div class="mut small" style="margin-bottom:8px">${t("hardNote")}</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>${t("cQ")}</th><th>${t("cAns")}</th><th>${t("cAcc")}</th><th>${t("cWrong")}</th></tr></thead><tbody>
       ${d.hard.map(h=>`<tr><td><div class="small mut">${qTag(h.id)}</div><div style="max-width:420px;overflow-wrap:anywhere">${stemOf(h.id)}</div></td><td>${h.att}</td><td style="color:var(--bad);font-weight:700">${pct(h.ok,h.att)}%</td><td>${h.topWrong?`${h.topWrong} <span class="mut small">(${h.topWrongN})</span>`:"–"}</td></tr>`).join("")}</tbody></table></div>
@@ -764,7 +775,7 @@ function bind(){
   if(S.view==="teacher"){
     $("#tcls").onchange=e=>{S.T.cls=e.target.value;S.T.detail=null;loadTeacher()};
     on("#trefresh",()=>loadTeacher()); on("#texport",exportCSV);
-    on("[data-tab]",e=>{S.T.tab=e.dataset.tab;S.T.detail=null;if(S.T.tab==="hw"&&!S.T.hw)loadHwList();render(true)}); bindHw();
+    on("[data-tab]",e=>{S.T.tab=e.dataset.tab;S.T.detail=null;if(S.T.tab==="hw"&&!S.T.hw)loadHwList(); if((S.T.tab==="hw"||S.T.tab==="groups")&&!S.T.groups)loadGroups();render(true)}); bindHw(); bindGroups();
     on("[data-tsort]",e=>{const k=e.dataset.tsort,o=S.T.sort; S.T.sort={k,d:o.k===k?-o.d:(k==="name"||k==="cls"?1:-1)};render(true)});
     on("[data-sid]",e=>loadStudent(e.dataset.sid)); on("#tback",()=>{S.T.detail=null;render(true)});
   }
@@ -786,19 +797,20 @@ $("#outBtn").onclick=logout;
 const d2s=ms=>{const d=new Date(ms);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 const fdate=ms=>ms?new Date(ms).toLocaleDateString(S.lang==="zh"?"zh-HK":"en-GB"):"–";
 const fdt=ms=>ms?new Date(ms).toLocaleString(S.lang==="zh"?"zh-HK":"en-GB",{hour12:false}):"–";
+const tgtName=c=>{ if(c.indexOf("g:")!==0)return esc(c); const g=(S.T.groups||[]).find(x=>"g:"+x.id===c); return g?"👥 "+esc(g.name):"👥 "+hT("grpUnknown"); };
 function hwCard(){
   if(!S.hw.length) return "";
   const now=Date.now();
   const rows=[...S.hw].sort((a,b)=>(a.due||9e15)-(b.due||9e15)).map(a=>{
-    const nq=a.qids.filter(id=>S.Q.some(q=>q.id===id)).length, st=a.status||{n:0,score:0}, done=st.n>0, late=a.due&&now>a.due;
+    const nq=a.qids.filter(id=>S.Q.some(q=>q.id===id)).length, st=a.status||{n:0,score:0}, done=st.n>0, late=a.due&&now>a.due, locked=a.once&&done;
     const chip=done?`<span class="pillst" style="background:var(--ok-soft);color:var(--ok)">${hT("done",st.score,a.qids.length)}</span>`
       :late?`<span class="pillst" style="background:var(--bad-soft);color:var(--bad)">${hT("overdue")}</span>`:`<span class="pillst" style="background:var(--na);color:var(--mut)">${hT("todo")}</span>`;
-    return `<div class="mbrow"><div style="flex:1;min-width:0"><b>${esc(a.title)}</b><div class="small mut">${hT("hwMeta",nq,a.limit,fdate(a.due))}</div></div>${chip}
-      <button class="btn ${done?"soft":""}" data-hw="${esc(a.id)}" style="padding:6px 16px;font-size:13px">${done?hT("redoHw"):hT("startHw")}</button></div>`}).join("");
+    return `<div class="mbrow"><div style="flex:1;min-width:0"><b>${esc(a.title)}</b><div class="small mut">${hT("hwMeta",nq,a.limit,fdate(a.due))}${a.once?" · "+hT("onceTag"):""}</div></div>${chip}
+      ${locked?"":`<button class="btn ${done?"soft":""}" data-hw="${esc(a.id)}" style="padding:6px 16px;font-size:13px">${done?hT("redoHw"):hT("startHw")}</button>`}</div>`}).join("");
   return `<div class="card"><h3>${hT("hwTitle")}</h3>${rows}</div>`;
 }
 function startHw(id){
-  const a=S.hw.find(x=>x.id===id); if(!a)return;
+  const a=S.hw.find(x=>x.id===id); if(!a||(a.once&&a.status&&a.status.n>0))return;
   const l=a.qids.map(i=>S.Q.find(q=>q.id===i)).filter(Boolean); if(!l.length){toast(hT("noQ"));return}
   const un=!a.limit, mins=a.limit||0;
   S.quiz={mode:"quiz",hw:a.id,list:l,i:0,ans:l.map(()=>null),start:Date.now(),deadline:un?Infinity:Date.now()+mins*60000,total:mins*60,mins,untimed:un,confirm:false,submitted:false};
@@ -817,15 +829,15 @@ async function loadHwList(){
 function hwPool(f){ return S.Q.filter(q=>(!f.topics.size||topicsOf(q).some(u=>f.topics.has(u)))&&(!f.years.size||f.years.has(q.year))); }
 function newHwForm(a){
   const now=Date.now();
-  if(a) return {id:a.id,title:a.title,classes:new Set(a.classes),topics:new Set(a.topics||[]),years:new Set(),n:a.qids.length,limit:a.limit||"",start:d2s(a.start||now),due:d2s(a.due||now+7*864e5),qids:[...a.qids],kw:"",edit:true};
-  return {id:null,title:"",classes:new Set(),topics:new Set(),years:new Set(),n:10,limit:"",start:d2s(now),due:d2s(now+7*864e5),qids:[],kw:""};
+  if(a) return {id:a.id,title:a.title,classes:new Set(a.classes),topics:new Set(a.topics||[]),years:new Set(),n:a.qids.length,limit:a.limit||"",once:!!a.once,start:d2s(a.start||now),due:d2s(a.due||now+7*864e5),qids:[...a.qids],kw:"",edit:true};
+  return {id:null,title:"",classes:new Set(),topics:new Set(),years:new Set(),n:10,limit:"",once:false,start:d2s(now),due:d2s(now+7*864e5),qids:[],kw:""};
 }
 function vHw(){
   const T=S.T; if(T.hwRes) return vHwRes(); if(T.hwForm) return vHwForm();
   if(T.hwLoading||!T.hw) return `<div class="card mut">${t("loading")}</div>`;
   const btn=(a,k,l)=>`<button class="btn soft" data-${k}="${esc(a.id)}" style="padding:5px 12px;font-size:13px">${hT(l)}</button>`;
-  const rows=T.hw.map(a=>`<tr><td><b>${esc(a.title)}</b></td><td>${esc(a.classes.join(", "))}</td><td>${a.qids.length}</td><td>${a.limit?a.limit+" "+t("minUnit"):hT("noLimit")}</td><td>${fdate(a.created)}</td><td>${fdate(a.start)}</td><td>${fdate(a.due)}</td>
-    <td>${a.submitted}/${a.eligible}</td><td>${a.avg==null?"–":a.avg+"%"}</td><td style="white-space:nowrap">${btn(a,"hwres","hwRes")} ${btn(a,"hwe","hwEdit")} ${btn(a,"hwx","hwDel")}</td></tr>`).join("");
+  const rows=T.hw.map(a=>`<tr><td><b>${esc(a.title)}</b></td><td>${a.classes.map(tgtName).join(", ")}</td><td>${a.qids.length}</td><td>${a.limit?a.limit+" "+t("minUnit"):hT("noLimit")}</td><td>${fdate(a.created)}</td><td>${fdate(a.start)}</td><td>${fdate(a.due)}</td>
+    <td>${a.submitted}/${a.eligible}</td><td>${a.avg==null?"–":a.avg+"%"}</td><td style="white-space:nowrap">${btn(a,"hwres","hwRes")} ${btn(a,"hwe","hwEdit")} ${btn(a,"hwdup","hwDup")} ${btn(a,"hwx","hwDel")}</td></tr>`).join("");
   return `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0">${t("tabHw")}</h3><button class="btn" id="hwNew">${hT("newHw")}</button></div>
    ${T.hw.length?`<div class="tbl-wrap" style="margin-top:12px"><table class="tbl"><thead><tr><th>${hT("hwName")}</th><th>${t("cClass")}</th><th>${hT("hwCQ")}</th><th>${hT("hwCLimit")}</th><th>${hT("hwCCreated")}</th><th>${hT("hwCStart")}</th><th>${hT("hwCDue")}</th><th>${hT("hwCDone")}</th><th>${hT("hwCAvg")}</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`
      :`<div class="mut" style="padding:12px 0">${hT("hwEmpty")}</div>`}</div>`;
@@ -844,6 +856,7 @@ function vHwForm(){
   return `<div class="card"><h3>${f.id?hT("hwEdit"):hT("newHw")}</h3>${f.edit?`<div class="note" style="margin-bottom:10px">${hT("editNote")}</div>`:""}
     <div class="label">${hT("hwName")}</div><input id="hwTitle" value="${esc(f.title)}" style="width:100%;${inp}">
     <div class="label">${hT("hwClasses")}</div><div class="chips">${classes.length?chips(classes,"data-hwc",f.classes,esc):`<span class="mut small">${hT("hwNoClass")}</span>`}</div>
+    ${(S.T.groups||[]).length?`<div class="label">${hT("grpGroupsL")}</div><div class="chips">${(S.T.groups||[]).map(g=>`<button class="chip ${f.classes.has("g:"+g.id)?"on":""}" data-hwc="g:${esc(g.id)}">👥 ${esc(g.name)} (${g.members.length})</button>`).join("")}</div>`:""}
     <div class="hwcols"><div><div class="label">${hT("hwTopics")}</div><div class="hwlist">${chips(Array.from({length:MAXT},(_,i)=>i+1),"data-hwt",f.topics,u=>u+". "+esc(luName(u)))}</div></div>
     <div><div class="label">${hT("hwYears")}</div><div class="hwlist">${chips(years,"data-hwy",f.years,yLabel)}</div></div></div>
     <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
@@ -851,6 +864,7 @@ function vHwForm(){
       <div><div class="label">${hT("hwLimit")}</div><input id="hwLimit" type="number" min="0" max="300" value="${esc(String(f.limit))}" style="width:120px;${inp}"></div>
       <div><div class="label">${hT("hwStart")}</div><input id="hwStart" type="date" value="${esc(f.start)}" style="${inp}"></div>
       <div><div class="label">${hT("hwDue")}</div><input id="hwDue" type="date" value="${esc(f.due)}" style="${inp}"></div></div>
+    <label style="display:flex;gap:8px;align-items:center;margin-top:12px;font-weight:600"><input type="checkbox" id="hwOnce" ${f.once?"checked":""}> ${hT("hwOnce")}</label>
     <div class="match" style="margin-top:12px">${hT("hwPool",pool.length)}</div>
     <button class="btn" id="hwPick" ${pool.length?"":"disabled"}>${hT("hwPick")}</button></div>
   <div class="card"><h3>${hT("hwSel")} (${f.qids.length})</h3>${selRows||`<div class="mut">${hT("hwNone")}</div>`}
@@ -870,7 +884,10 @@ async function saveHw(){
   if(!f.title.trim()) return toast(hT("hwNeedTitle")); if(!f.classes.size) return toast(hT("hwNeedClass")); if(!f.qids.length) return toast(hT("hwNeedQ"));
   const start=new Date(f.start+"T00:00:00").getTime(), due=new Date(f.due+"T23:59:59").getTime();
   if(!(start>0&&due>0)||due<start) return toast(hT("hwDates"));
-  try{ await api("tHwSave",{id:f.id,title:f.title.trim(),classes:[...f.classes],topics:[...f.topics],qids:f.qids,limit:Math.max(0,Math.round(+f.limit)||0),start,due});
+  const ids=new Set(); (S.T.gStu||[]).forEach(x=>{ if(f.classes.has(x.cls))ids.add(x.id) }); (S.T.groups||[]).forEach(g=>{ if(f.classes.has("g:"+g.id))g.members.forEach(m=>ids.add(m)) });
+  const lim=Math.max(0,Math.round(+f.limit)||0);
+  if(!window.confirm(hT("hwConfirm",f.title.trim(),[...f.classes].map(c=>c.indexOf("g:")===0?((S.T.groups||[]).find(g=>"g:"+g.id===c)||{name:"?"}).name:c).join(", "),ids.size,f.qids.length,f.due,lim,f.once))) return;
+  try{ await api("tHwSave",{id:f.id,title:f.title.trim(),classes:[...f.classes],topics:[...f.topics],qids:f.qids,limit:lim,once:!!f.once,start,due});
     S.T.hwForm=null; toast(hT("hwSaved")); loadHwList(); }
   catch(e){ toast(e.message); }
 }
@@ -890,7 +907,7 @@ function vHwRes(){
     :s.late?`<span class="pillst" style="background:#fff3cd;color:#8a6d00">${hT("rLate")}</span>`:`<span class="pillst" style="background:var(--ok-soft);color:var(--ok)">${hT("rOk")}</span>`;
   const mark=(s,q)=>{const x=s.ans[q]; return x?`<td style="text-align:center;color:${x.c?"var(--ok)":"var(--bad)"};font-weight:700">${x.c?"✓":"✕"}</td>`:`<td style="text-align:center" class="mut">–</td>`};
   return `<div class="card">${back}<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><h2 style="margin:0">${esc(a.title)}</h2>
-      <div class="mut small">${esc(a.classes.join(", "))} · ${hT("hwMeta",n,a.limit,fdate(a.due))}</div></div><button class="btn soft" id="hwExport">${hT("rExport")}</button></div>
+      <div class="mut small">${a.classes.map(tgtName).join(", ")} · ${hT("hwMeta",n,a.limit,fdate(a.due))}</div></div><button class="btn soft" id="hwExport">${hT("rExport")}</button></div>
     <div class="tiles" style="margin-top:14px"><div class="tile"><b>${st.length}</b><span>${hT("rEligible")}</span></div><div class="tile ok"><b>${sub.length}</b><span>${hT("rSubmitted")}</span></div>
       <div class="tile bad"><b>${st.length-sub.length}</b><span>${hT("rMissing")}</span></div><div class="tile ok"><b>${avg==null?"–":avg+"%"}</b><span>${hT("rAvg")}</span></div></div></div>
   <div class="card"><h3>${hT("rStu")}</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>${t("cName")}</th><th>${t("cClass")}</th><th>${hT("rStatus")}</th><th>${hT("rScore")}</th><th>${hT("rTime")}</th>${a.qids.map((_,i)=>`<th style="text-align:center">${i+1}</th>`).join("")}</tr></thead><tbody>
@@ -910,23 +927,69 @@ function bindHw(){
   if(T.tab!=="hw")return;
   on("#hwNew",()=>{T.hwForm=newHwForm();render()});
   on("[data-hwe]",e=>{const a=(T.hw||[]).find(x=>x.id===e.dataset.hwe); if(a){T.hwForm=newHwForm(a);render()}});
+  on("[data-hwdup]",e=>{const a=(T.hw||[]).find(x=>x.id===e.dataset.hwdup); if(a){const f=newHwForm(a); f.id=null; f.edit=false; f.title=a.title+hT("hwDupTitle"); f.classes=new Set(); const n=Date.now(); f.start=d2s(n); f.due=d2s(n+7*864e5); T.hwForm=f; render()}});
   on("[data-hwx]",async e=>{ if(!window.confirm(hT("hwDelConfirm")))return; try{await api("tHwDelete",{id:e.dataset.hwx})}catch(x){toast(x.message)} loadHwList(); });
   on("[data-hwres]",e=>openHwRes(e.dataset.hwres));
   on("#hwBack",()=>{T.hwRes=null;render(true)}); on("#hwExport",exportHwCSV);
   if(!f)return;
   const bindIn=(id,key)=>{const el=$(id); if(el) el.oninput=()=>{f[key]=el.value}};
-  bindIn("#hwTitle","title"); bindIn("#hwN","n"); bindIn("#hwLimit","limit"); bindIn("#hwStart","start"); bindIn("#hwDue","due"); bindIn("#hwKw","kw");
+  bindIn("#hwTitle","title"); bindIn("#hwN","n"); bindIn("#hwLimit","limit"); bindIn("#hwStart","start"); bindIn("#hwDue","due"); bindIn("#hwKw","kw"); const oc=$("#hwOnce"); if(oc) oc.onchange=()=>{f.once=oc.checked};
   const kw=$("#hwKw"); if(kw) kw.onkeydown=e=>{ if(e.key==="Enter"){e.preventDefault();render(true)} };
   const tog=(set,v)=>{set.has(v)?set.delete(v):set.add(v)};
   on("[data-hwc]",e=>{tog(f.classes,e.dataset.hwc);render(true)});
   on("[data-hwt]",e=>{tog(f.topics,+e.dataset.hwt);render(true)});
   on("[data-hwy]",e=>{tog(f.years,+e.dataset.hwy);render(true)});
   on("#hwPick",()=>{ const n=Math.max(1,Math.min(100,Math.round(+f.n)||10)); f.n=n; f.qids=shuffle(hwPool(f)).slice(0,n).map(q=>q.id); render(true) });
-  on("[data-hwr]",e=>{ const i=+e.dataset.hwr, cand=hwPool(f).filter(q=>!f.qids.includes(q.id)); if(!cand.length){toast(hT("hwNoSwap"));return} f.qids[i]=cand[Math.floor(Math.random()*cand.length)].id; render(true) });
+  on("[data-hwr]",e=>{ const i=+e.dataset.hwr, cand=hwPool(f).filter(q=>!f.qids.includes(q.id)); if(!cand.length){toast(hT("hwNoSwap"));return} f.qids[i]=cand[Math.floor(Math.random()*cand.length)].id; render(true); previewQ(f.qids[i]) });
   on("[data-hwd]",e=>{ f.qids.splice(+e.dataset.hwd,1); render(true) });
   on("[data-hwa]",e=>{ if(!f.qids.includes(e.dataset.hwa)&&f.qids.length<100)f.qids.push(e.dataset.hwa); render(true) });
   on("[data-hwv]",e=>previewQ(e.dataset.hwv));
   on("#hwSearch",()=>render(true)); on("#hwCancel",()=>{T.hwForm=null;render(true)}); on("#hwSave",saveHw);
+}
+
+/* ============ Teacher groups ============ */
+async function loadGroups(){
+  try{ const r=await api("tGroupList"); S.T.groups=r.groups||[]; S.T.gStu=r.students||[]; }catch(e){ S.T.groups=[]; S.T.gStu=[]; toast(e.message); }
+  if(S.view==="teacher")render(true);
+}
+function vGroups(){
+  const T=S.T; if(!T.groups) return `<div class="card mut">${t("loading")}</div>`;
+  if(T.grpForm) return vGroupForm();
+  const rows=T.groups.map(g=>`<div class="mbrow"><div style="flex:1;min-width:0"><b>${esc(g.name)}</b><div class="small mut">${hT("grpMem",g.members.length)}</div></div>
+    <button class="btn soft" data-grpe="${esc(g.id)}" style="padding:5px 12px;font-size:13px">${hT("hwEdit")}</button><button class="btn soft" data-grpx="${esc(g.id)}" style="padding:5px 12px;font-size:13px">${hT("hwDel")}</button></div>`).join("");
+  return `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0">${t("tabGrp")}</h3><button class="btn" id="grpNew">${hT("grpNew")}</button></div>
+    ${rows||`<div class="mut" style="padding:12px 0">${hT("grpEmpty")}</div>`}</div>`;
+}
+function vGroupForm(){
+  const f=S.T.grpForm, all=S.T.gStu, classes=[...new Set(all.map(s=>s.cls).filter(Boolean))].sort(), kw=(f.kw||"").trim().toLowerCase();
+  const list=all.filter(s=>(!f.cls||s.cls===f.cls)&&(!kw||s.name.toLowerCase().includes(kw)||s.id.toLowerCase().includes(kw)));
+  const inp="padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit";
+  return `<div class="card"><h3>${f.id?hT("hwEdit"):hT("grpNew")}</h3>
+    <div class="label">${hT("grpName")}</div><input id="grpName" value="${esc(f.name)}" maxlength="40" style="width:100%;${inp}">
+    <div class="label">${hT("grpPick")}</div><div class="chips"><button class="chip ${f.cls?"":"on"}" data-grpc="">${t("allClasses")}</button>${classes.map(c=>`<button class="chip ${f.cls===c?"on":""}" data-grpc="${esc(c)}">${esc(c)}</button>`).join("")}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="grpKw" value="${esc(f.kw||"")}" placeholder="${esc(hT("grpSearchPh"))}" style="flex:1;min-width:200px;${inp}">
+      <button class="btn soft" id="grpAll" style="padding:6px 12px;font-size:13px">${hT("grpAll")}</button><button class="btn soft" id="grpNone" style="padding:6px 12px;font-size:13px">${hT("grpNone")}</button></div>
+    <div class="match" style="margin-top:12px">${hT("grpMem",f.members.size)} · ${hT("grpShown",list.length)}</div>
+    <div class="hwlist" style="max-height:420px">${list.map(s=>`<button class="chip ${f.members.has(s.id)?"on":""}" data-grpm="${esc(s.id)}">${esc(s.name)} <span style="opacity:.7;font-size:12px">${esc(s.cls)} · ${esc(s.id)}</span></button>`).join("")}</div></div>
+  <div class="card" style="display:flex;gap:10px"><button class="btn" id="grpSave">${hT("grpSave")}</button><button class="btn soft" id="grpCancel">${hT("hwCancel")}</button></div>`;
+}
+async function saveGroup(){
+  const f=S.T.grpForm; if(!f.name.trim()) return toast(hT("grpNeedName"));
+  try{ await api("tGroupSave",{id:f.id,name:f.name.trim(),members:[...f.members]}); S.T.grpForm=null; toast(hT("hwSaved")); await loadGroups(); }catch(e){ toast(e.message); }
+}
+function bindGroups(){
+  const T=S.T, on=(sel,fn)=>document.querySelectorAll(sel).forEach(e=>e.addEventListener("click",ev=>{ev.preventDefault();fn(e)}));
+  if(T.tab!=="groups")return;
+  on("#grpNew",()=>{T.grpForm={id:null,name:"",members:new Set(),cls:"",kw:""};render()});
+  on("[data-grpe]",e=>{const g=T.groups.find(x=>x.id===e.dataset.grpe); if(g){T.grpForm={id:g.id,name:g.name,members:new Set(g.members),cls:"",kw:""};render()}});
+  on("[data-grpx]",async e=>{ if(!window.confirm(hT("grpDel")))return; try{await api("tGroupDelete",{id:e.dataset.grpx})}catch(x){toast(x.message)} loadGroups(); });
+  const f=T.grpForm; if(!f)return;
+  const nm=$("#grpName"); if(nm) nm.oninput=()=>{f.name=nm.value}; const kw=$("#grpKw"); if(kw){kw.oninput=()=>{f.kw=kw.value}; kw.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();render(true)}}}
+  const vis=()=>{const k=(f.kw||"").trim().toLowerCase(); return T.gStu.filter(s=>(!f.cls||s.cls===f.cls)&&(!k||s.name.toLowerCase().includes(k)||s.id.toLowerCase().includes(k)))};
+  on("[data-grpc]",e=>{f.cls=e.dataset.grpc;render(true)});
+  on("[data-grpm]",e=>{const id=e.dataset.grpm; f.members.has(id)?f.members.delete(id):f.members.add(id); render(true)});
+  on("#grpAll",()=>{vis().forEach(s=>f.members.add(s.id));render(true)}); on("#grpNone",()=>{vis().forEach(s=>f.members.delete(s.id));render(true)});
+  on("#grpSave",saveGroup); on("#grpCancel",()=>{T.grpForm=null;render(true)});
 }
 function openPw(){
   const o=document.createElement("div"); o.className="ov";
