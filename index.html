@@ -144,11 +144,11 @@ const CONFIG = { API_URL: "https://script.google.com/macros/s/AKfycbywmEpSj-79uc
 
 /* ============ CURRICULUM (from EDB "Explanatory Notes to Senior Secondary Mathematics Curriculum – Compulsory Part") ============ */
 const STRANDS = [
-  {id:"NA",  en:"Number and Algebra",          zh:"數與代數",       color:"var(--c-NA)",  units:[1,2,3,5,6,9,10,11,13,18,19,23,24]},
+  {id:"NA",  en:"Number and Algebra",          zh:"數與代數",       color:"var(--c-NA)",  units:[1,2,3,5,6,9,10,11,13,18,19,23,24,25]},
   {id:"MSS", en:"Measures, Shape and Space",   zh:"度量、圖形與空間", color:"var(--c-MSS)", units:[4,7,8,12,14,15,16,17]},
   {id:"DH",  en:"Data Handling",               zh:"數據處理",       color:"var(--c-DH)",  units:[20,21,22]}
 ];
-/* The school's 24 topics (same numbering as the Past Paper folders). */
+/* The school's 25 topics (same numbering as the Past Paper folders). */
 const LU = {
  1:["Percentages","百分法"],2:["Indices and Surds","指數與根式"],3:["Logarithm Function","對數函數"],4:["Error Estimation","誤差估計"],
  5:["Factorization","因式分解"],6:["Equations","方程"],7:["Plane Geometry (Straight Lines and Rectilinear Figures)","平面幾何（直線與直線形）"],
@@ -157,10 +157,10 @@ const LU = {
  14:["Trigonometry in 2D and 3D","二維及三維空間的三角學"],15:["Coordinate Geometry (Straight Line, Polar Coordinates)","坐標幾何（直線方程、極坐標）"],
  16:["Coordinate Geometry (Equation of Circle)","坐標幾何（圓的方程）"],17:["Coordinate Geometry (Locus)","坐標幾何（軌跡）"],
  18:["Inequality","不等式"],19:["Linear Programming","線性規劃"],20:["Permutation and Combination","排列與組合"],21:["Probability","概率"],
- 22:["Statistics","統計"],23:["Number System","數系"],24:["Formula (Change of Subject)","公式（變換主項）"]
+ 22:["Statistics","統計"],23:["Number System","數系"],24:["Formula (Change of Subject)","公式（變換主項）"],25:["Base Conversion","進制轉換"]
 };
 const strandOf = lu => STRANDS.find(s => s.units.includes(lu));
-const MAXT = 24;
+const MAXT = 25;
 const topicsOf = q => (q.topics && q.topics.length) ? q.topics : [q.lu];       // a question can belong to several topics
 const inTopic = (q,u) => topicsOf(q).includes(u);
 const imgSrc = f => /^(https?:|data:|\/)/.test(f) ? f : "images/" + f;           // bare file name = file in the images folder
